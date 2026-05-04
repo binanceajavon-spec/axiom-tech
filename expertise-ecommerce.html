@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="AXIOM - Expertise E-commerce & Performance Digitale" name="description"/>
+    <title>AXIOM | E-commerce — Innovation & Performance</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        :root {
+            --violet-900: #0f051f;
+            --violet-800: #1f0a3a;
+            --violet-700: #361065;
+            --violet-600: #5a1e9e;
+            --violet-500: #8b3de0;
+            --violet-400: #b370f5;
+            --violet-300: #d4a7fc;
+            --violet-200: #ecd9ff;
+            --violet-100: #f7f0ff;
+            --white: #ffffff;
+            --glass-bg: rgba(255,255,255,0.05);
+            --glass-border: rgba(255,255,255,0.1);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: var(--white);
+            color: var(--violet-900);
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Jura', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .main-content {
+            margin-top: 72px;
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        @keyframes scalePulse {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+        
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .animate-fade-up {
+            animation: fadeUp 0.7s ease-out forwards;
+        }
+        
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .animate-scale-pulse {
+            animation: scalePulse 3s ease-in-out infinite;
+        }
+        
+        .animate-slide-left {
+            animation: slideInLeft 0.6s ease-out forwards;
+        }
+        
+        .animate-slide-right {
+            animation: slideInRight 0.6s ease-out forwards;
+        }
+
+        /* Glassmorphism */
+        .glass-card {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s ease;
+        }
+        
+        .glass-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(139,61,224,0.4);
+            transform: translateY(-8px);
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #fff 0%, var(--violet-300) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Floating 3D elements */
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 0;
+        }
+
+        /* Stats cards */
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--violet-400), var(--violet-200));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Hero gradient */
+        .hero-gradient {
+            background: radial-gradient(ellipse at 30% 40%, var(--violet-800) 0%, var(--violet-900) 70%, #05010e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 30%, rgba(139,61,224,0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        /* Barres de progression */
+        .progress-bar {
+            height: 6px;
+            background: rgba(139,61,224,0.15);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--violet-500), var(--violet-300));
+            border-radius: 10px;
+            transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Cartes service 3D */
+        .service-3d-card {
+            background: white;
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            border: 1px solid var(--violet-100);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-3d-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139,61,224,0.05), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .service-3d-card:hover::before {
+            left: 100%;
+        }
+        
+        .service-3d-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(91,30,158,0.25);
+            border-color: var(--violet-300);
+        }
+
+        /* Circonférence SVG */
+        .circular-chart {
+            transform: rotate(-90deg);
+        }
+        
+        .circle-bg {
+            stroke: #e9d5ff;
+            stroke-width: 8;
+            fill: none;
+        }
+        
+        .circle-progress {
+            stroke-width: 8;
+            fill: none;
+            stroke-linecap: round;
+            transition: stroke-dasharray 1s ease;
+        }
+
+        /* CTA section */
+        .cta-glow {
+            background: linear-gradient(135deg, var(--violet-700), var(--violet-500));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-glow::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== NAVBAR INJECTÉE ========== -->
+    <div id="navbar-container"></div>
+    <script src="navbar.js"></script>
+
+    <main class="main-content">
+
+        <!-- ── HERO SECTION INNOVANTE ── -->
+        <section class="hero-gradient text-white min-h-screen flex items-center relative overflow-hidden">
+            <!-- Éléments flottants 3D -->
+            <div class="floating-shape w-96 h-96 bg-violet-600/30 top-20 -left-48 animate-float"></div>
+            <div class="floating-shape w-72 h-72 bg-fuchsia-500/20 bottom-20 -right-36 animate-float" style="animation-delay: 2s;"></div>
+            <div class="floating-shape w-56 h-56 bg-violet-400/20 top-1/3 right-20 animate-scale-pulse"></div>
+            
+            <!-- Particules décoratives -->
+            <div class="absolute inset-0 pointer-events-none">
+                <div class="absolute top-1/4 left-1/4 w-1 h-1 bg-white/40 rounded-full"></div>
+                <div class="absolute top-3/4 right-1/3 w-2 h-2 bg-violet-300/40 rounded-full"></div>
+                <div class="absolute bottom-1/3 left-1/5 w-1.5 h-1.5 bg-white/30 rounded-full"></div>
+            </div>
+            
+            <div class="relative max-w-[1280px] mx-auto px-8 grid md:grid-cols-2 items-center gap-12 z-10 py-20">
+                <div class="animate-slide-left">
+                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full mb-6">
+                        <span class="w-2 h-2 bg-violet-300 rounded-full animate-pulse"></span>
+                        <span class="font-jura text-xs font-bold tracking-wider text-violet-200 uppercase">Expertise E-commerce 4.0</span>
+                    </div>
+                    <h1 class="font-jura text-6xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6">
+                        Scale your<span class="gradient-text"> e-commerce</span> to the moon
+                    </h1>
+                    <p class="text-lg text-violet-200/80 mb-10 max-w-xl leading-relaxed">
+                        Stratégies data-driven, technologies de pointe et creative marketing pour transformer votre boutique en machine à vendre.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button class="bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white px-8 py-4 font-jura font-bold rounded-full hover:shadow-2xl hover:scale-105 transition-all flex items-center gap-2 group">
+                            <span>Diagnostic gratuit</span>
+                            <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition">arrow_forward</span>
+                        </button>
+                        <button class="border border-white/30 text-white px-8 py-4 font-jura font-bold rounded-full hover:bg-white/10 transition-all">
+                            Explorer nos solutions
+                        </button>
+                    </div>
+                </div>
+                <div class="relative animate-slide-right">
+                    <div class="relative animate-float">
+                        <!-- Illustration 3D style -->
+                        <div class="bg-gradient-to-br from-violet-600/20 to-violet-900/40 rounded-2xl p-8 border border-violet-400/30 backdrop-blur-sm">
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div class="bg-white/5 rounded-xl p-4 text-center">
+                                    <span class="text-3xl font-bold text-violet-300">+156%</span>
+                                    <p class="text-xs text-violet-200/60">Croissance moyenne</p>
+                                </div>
+                                <div class="bg-white/5 rounded-xl p-4 text-center">
+                                    <span class="text-3xl font-bold text-violet-300">4.2x</span>
+                                    <p class="text-xs text-violet-200/60">ROAS</p>
+                                </div>
+                            </div>
+                            <div class="h-48 bg-gradient-to-br from-violet-500/20 to-fuchsia-500/20 rounded-xl flex items-center justify-center">
+                                <span class="material-symbols-outlined text-7xl text-violet-300">shopping_cart</span>
+                            </div>
+                            <div class="flex justify-between mt-4 text-xs text-violet-300/60">
+                                <span>📊 +267% trafic</span>
+                                <span>🎯 -45% CPA</span>
+                                <span>💎 +89% LTV</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-8 -right-8 bg-gradient-to-r from-violet-600 to-fuchsia-600 p-5 rounded-2xl shadow-2xl animate-float" style="animation-delay: 1s;">
+                        <div class="text-3xl font-black">25M+€</div>
+                        <div class="text-xs opacity-80">CA généré</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── STATS SECTION INNOVANTE ── -->
+        <section class="py-20 relative overflow-hidden bg-gradient-to-b from-violet-50 to-white">
+            <div class="max-w-[1280px] mx-auto px-8">
+                <div class="text-center mb-12">
+                    <span class="text-violet-500 font-jura text-sm uppercase tracking-wider bg-violet-100 px-4 py-1 rounded-full inline-block">Impact mesurable</span>
+                    <h2 class="font-jura text-4xl md:text-5xl font-bold text-violet-900 mt-4">La performance en chiffres</h2>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="glass-card rounded-2xl p-6 text-center">
+                        <div class="text-5xl font-black mb-2 stat-number">200+</div>
+                        <div class="text-gray-600 font-medium">Boutiques accompagnées</div>
+                        <div class="text-xs text-violet-400 mt-2">+45 en 2024</div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6 text-center">
+                        <div class="text-5xl font-black mb-2 stat-number">+156%</div>
+                        <div class="text-gray-600 font-medium">Croissance des ventes</div>
+                        <div class="text-xs text-violet-400 mt-2">en moyenne sur 12 mois</div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6 text-center">
+                        <div class="text-5xl font-black mb-2 stat-number">4.2x</div>
+                        <div class="text-gray-600 font-medium">ROAS moyen</div>
+                        <div class="text-xs text-violet-400 mt-2">sur toutes les campagnes</div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6 text-center">
+                        <div class="text-5xl font-black mb-2 stat-number">25M+€</div>
+                        <div class="text-gray-600 font-medium">Chiffre d'affaires</div>
+                        <div class="text-xs text-violet-400 mt-2">généré pour nos clients</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── BLOC 1 : EXPERTISE AVEC DIAGRAMME DYNAMIQUE ── -->
+        <section class="py-24 bg-white">
+            <div class="max-w-[1280px] mx-auto px-8 grid lg:grid-cols-2 gap-16 items-center">
+                <div class="order-2 lg:order-1">
+                    <span class="text-violet-500 font-jura text-sm uppercase tracking-wider mb-4 block">Notre expertise</span>
+                    <h2 class="font-jura text-4xl md:text-5xl font-bold text-violet-900 mb-6">Une vision 360° de l'e-commerce</h2>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        Du funnel d'acquisition à la fidélisation, nous maîtrisons tous les leviers pour transformer votre boutique en machine à vendre.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-violet-100 flex items-center justify-center flex-shrink-0">
+                                <span class="material-symbols-outlined text-violet-600">analytics</span>
+                            </div>
+                            <div>
+                                <h3 class="font-jura font-bold text-xl text-violet-900">Performance data-driven</h3>
+                                <p class="text-gray-500">Décisions basées sur la data, A/B testing et optimisation continue.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-violet-100 flex items-center justify-center flex-shrink-0">
+                                <span class="material-symbols-outlined text-violet-600">campaign</span>
+                            </div>
+                            <div>
+                                <h3 class="font-jura font-bold text-xl text-violet-900">Acquisition multicanale</h3>
+                                <p class="text-gray-500">Google Shopping, Meta, TikTok, SEO, Influence — le mix parfait.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-violet-100 flex items-center justify-center flex-shrink-0">
+                                <span class="material-symbols-outlined text-violet-600">rocket_launch</span>
+                            </div>
+                            <div>
+                                <h3 class="font-jura font-bold text-xl text-violet-900">Scale-up accéléré</h3>
+                                <p class="text-gray-500">Passage à l'échelle avec des stratégies éprouvées et ROI garantis.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <div class="bg-gradient-to-br from-violet-50 to-white p-8 rounded-3xl border border-violet-100 shadow-xl">
+                        <h3 class="font-jura text-2xl font-bold text-violet-900 mb-6">Notre impact en visualisation</h3>
+                        <div class="space-y-5">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-violet-800">Acquisition de trafic</span>
+                                    <span class="text-violet-500 font-bold">+267%</span>
+                                </div>
+                                <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-violet-800">Taux de conversion</span>
+                                    <span class="text-violet-500 font-bold">+42%</span>
+                                </div>
+                                <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-violet-800">Valeur panier moyen</span>
+                                    <span class="text-violet-500 font-bold">+28%</span>
+                                </div>
+                                <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-medium text-violet-800">ROAS global</span>
+                                    <span class="text-violet-500 font-bold">4.2x</span>
+                                </div>
+                                <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── SERVICES 3D CARTES ── -->
+        <section class="py-24 bg-violet-50">
+            <div class="max-w-[1280px] mx-auto px-8">
+                <div class="text-center mb-16">
+                    <span class="text-violet-500 font-jura text-sm uppercase tracking-wider bg-white px-4 py-1 rounded-full inline-block">Nos solutions</span>
+                    <h2 class="font-jura text-4xl md:text-5xl font-bold text-violet-900 mt-4">Des services sur-mesure pour votre réussite</h2>
+                    <p class="text-gray-500 mt-4 max-w-2xl mx-auto">Une approche complète couvrant chaque aspect de votre activité e-commerce</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="service-3d-card p-6">
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined text-white text-2xl">code</span>
+                        </div>
+                        <h3 class="font-jura font-bold text-xl text-violet-900 mb-2">Tech & Dev</h3>
+                        <p class="text-gray-500 text-sm">Boutiques sur mesure, migration, optimisation technique et performances.</p>
+                    </div>
+                    <div class="service-3d-card p-6">
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined text-white text-2xl">ads_click</span>
+                        </div>
+                        <h3 class="font-jura font-bold text-xl text-violet-900 mb-2">Performance Marketing</h3>
+                        <p class="text-gray-500 text-sm">Google, Meta, TikTok, Pinterest — acquisition rentable à grande échelle.</p>
+                    </div>
+                    <div class="service-3d-card p-6">
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined text-white text-2xl">database</span>
+                        </div>
+                        <h3 class="font-jura font-bold text-xl text-violet-900 mb-2">Logistique & Ops</h3>
+                        <p class="text-gray-500 text-sm">Optimisation supply chain, WMS, fulfillment et expérience de livraison.</p>
+                    </div>
+                    <div class="service-3d-card p-6">
+                        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined text-white text-2xl">analytics</span>
+                        </div>
+                        <h3 class="font-jura font-bold text-xl text-violet-900 mb-2">Data & Insights</h3>
+                        <p class="text-gray-500 text-sm">Dashboard sur-mesure, tracking avancé et analyse prédictive.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── CERCLE DE COMPÉTENCES (PILIERS) ── -->
+        <section class="py-24 bg-white">
+            <div class="max-w-[1280px] mx-auto px-8">
+                <div class="text-center mb-16">
+                    <span class="text-violet-500 font-jura text-sm uppercase tracking-wider bg-violet-100 px-4 py-1 rounded-full inline-block">Nos piliers</span>
+                    <h2 class="font-jura text-4xl md:text-5xl font-bold text-violet-900 mt-4">3 leviers clés de performance</h2>
+                </div>
+                <div class="grid md:grid-cols-3 gap-12">
+                    <div class="text-center group">
+                        <div class="relative w-40 h-40 mx-auto mb-6">
+                            <svg class="w-full h-full circular-chart">
+                                <circle class="circle-bg" cx="80" cy="80" r="70"></circle>
+                                <circle class="circle-progress" cx="80" cy="80" r="70" stroke="#8b3de0" stroke-dasharray="440" stroke-dashoffset="66"></circle>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-3xl font-black text-violet-600">85%</span>
+                            </div>
+                        </div>
+                        <h3 class="font-jura text-2xl font-bold text-violet-900 mb-2">Conversion Rate</h3>
+                        <p class="text-gray-500">Optimisation UX/UI, tunnel d'achat fluide, trust signals.</p>
+                    </div>
+                    <div class="text-center group">
+                        <div class="relative w-40 h-40 mx-auto mb-6">
+                            <svg class="w-full h-full circular-chart">
+                                <circle class="circle-bg" cx="80" cy="80" r="70"></circle>
+                                <circle class="circle-progress" cx="80" cy="80" r="70" stroke="#d946ef" stroke-dasharray="440" stroke-dashoffset="132"></circle>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-3xl font-black text-fuchsia-500">70%</span>
+                            </div>
+                        </div>
+                        <h3 class="font-jura text-2xl font-bold text-violet-900 mb-2">Acquisition</h3>
+                        <p class="text-gray-500">Trafic qualifié SEO, SEA, Social Ads, Influence.</p>
+                    </div>
+                    <div class="text-center group">
+                        <div class="relative w-40 h-40 mx-auto mb-6">
+                            <svg class="w-full h-full circular-chart">
+                                <circle class="circle-bg" cx="80" cy="80" r="70"></circle>
+                                <circle class="circle-progress" cx="80" cy="80" r="70" stroke="#c084fc" stroke-dasharray="440" stroke-dashoffset="176"></circle>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-3xl font-black text-violet-400">60%</span>
+                            </div>
+                        </div>
+                        <h3 class="font-jura text-2xl font-bold text-violet-900 mb-2">Fidélisation</h3>
+                        <p class="text-gray-500">CRM, email marketing, programmes de fidélité, LTV.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── SUCCESS STORIES INNOVANTES ── -->
+        <section class="py-24 bg-gradient-to-b from-violet-50 to-white">
+            <div class="max-w-[1280px] mx-auto px-8">
+                <div class="text-center mb-16">
+                    <span class="text-violet-500 font-jura text-sm uppercase tracking-wider bg-white px-4 py-1 rounded-full inline-block">Success stories</span>
+                    <h2 class="font-jura text-4xl md:text-5xl font-bold text-violet-900 mt-4">Ils ont explosé leurs ventes</h2>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-3xl p-6 shadow-xl border border-violet-100 hover:shadow-2xl transition-all">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-white">fashion</span>
+                            </div>
+                            <div>
+                                <h4 class="font-jura font-bold text-violet-900">Mode Luxe</h4>
+                                <p class="text-xs text-gray-500">Fashion e-commerce</p>
+                            </div>
+                        </div>
+                        <div class="text-4xl font-black text-violet-600 mb-1">+185%</div>
+                        <p class="text-sm text-gray-500 mb-4">de ventes en 12 mois</p>
+                        <div class="flex justify-between items-center pt-4 border-t border-violet-100">
+                            <div><span class="font-bold text-violet-600">4.8★</span><p class="text-xs text-gray-400">Avis produits</p></div>
+                            <div><span class="font-bold text-violet-600">+42%</span><p class="text-xs text-gray-400">Taux conversion</p></div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-3xl p-6 shadow-xl border border-violet-100 hover:shadow-2xl transition-all">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-white">home</span>
+                            </div>
+                            <div>
+                                <h4 class="font-jura font-bold text-violet-900">Déco & Maison</h4>
+                                <p class="text-xs text-gray-500">Leader décoration</p>
+                            </div>
+                        </div>
+                        <div class="text-4xl font-black text-violet-600 mb-1">+112%</div>
+                        <p class="text-sm text-gray-500 mb-4">de trafic organique</p>
+                        <div class="flex justify-between items-center pt-4 border-t border-violet-100">
+                            <div><span class="font-bold text-violet-600">+3x</span><p class="text-xs text-gray-400">Visiteurs</p></div>
+                            <div><span class="font-bold text-violet-600">-35%</span><p class="text-xs text-gray-400">Abandon panier</p></div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-3xl p-6 shadow-xl border border-violet-100 hover:shadow-2xl transition-all">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-white">sports_esports</span>
+                            </div>
+                            <div>
+                                <h4 class="font-jura font-bold text-violet-900">Tech & Gaming</h4>
+                                <p class="text-xs text-gray-500">High-tech e-commerce</p>
+                            </div>
+                        </div>
+                        <div class="text-4xl font-black text-violet-600 mb-1">+234%</div>
+                        <p class="text-sm text-gray-500 mb-4">de ROI publicitaire</p>
+                        <div class="flex justify-between items-center pt-4 border-t border-violet-100">
+                            <div><span class="font-bold text-violet-600">5.2x</span><p class="text-xs text-gray-400">ROAS</p></div>
+                            <div><span class="font-bold text-violet-600">+67%</span><p class="text-xs text-gray-400">Nouveaux clients</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── CTA FINALE GLOW ── -->
+        <section class="cta-glow py-24 text-center relative">
+            <div class="relative z-10 max-w-3xl mx-auto px-8">
+                <h2 class="font-jura text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">Prêt à faire décoller vos ventes ?</h2>
+                <p class="text-white/80 text-lg mb-10 max-w-2xl mx-auto">
+                    Obtenez un audit e-commerce complet gratuitement et découvrez les opportunités cachées de votre boutique.
+                </p>
+                <button class="bg-white text-violet-700 px-10 py-5 font-jura font-bold rounded-full shadow-2xl hover:shadow-white/30 transition-all hover:scale-105 inline-flex items-center gap-2 group">
+                    <span>Diagnostic gratuit</span>
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition">arrow_forward</span>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========== FOOTER AXIOM ========== -->
+    <footer class="bg-black border-t border-zinc-800 w-full py-12">
+        <div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex flex-col items-center md:items-start gap-4">
+                <span class="text-xl font-black text-white font-jura-bold">AXIOM</span>
+                <p class="font-body text-sm tracking-wide text-zinc-500 font-jura-bold">© 2024 AXIOM. Strategic IT Consulting &amp; Auditing.</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-8">
+                <a class="font-jura-bold text-sm tracking-wide text-zinc-500 hover:text-primary transition-colors duration-200" href="#">Expertise</a>
+                <a class="font-jura-bold text-sm tracking-wide text-zinc-500 hover:text-primary transition-colors duration-200" href="#">Insights</a>
+                <a class="font-jura-bold text-sm tracking-wide text-zinc-500 hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
+                <a class="font-jura-bold text-sm tracking-wide text-zinc-500 hover:text-primary transition-colors duration-200" href="#">Terms of Service</a>
+            </div>
+            <div class="flex gap-4">
+                <div class="w-10 h-10 rounded-full border border-zinc-800 flex items-center justify-center text-zinc-500 hover:text-primary hover:border-primary transition-all cursor-pointer">
+                    <span class="material-symbols-outlined text-xl">share</span>
+                </div>
+                <div class="w-10 h-10 rounded-full border border-zinc-800 flex items-center justify-center text-zinc-500 hover:text-primary hover:border-primary transition-all cursor-pointer">
+                    <span class="material-symbols-outlined text-xl">language</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation des barres de progression au scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const fills = entry.target.querySelectorAll('.progress-fill');
+                    fills.forEach(fill => {
+                        const width = fill.style.width;
+                        if (width && width !== '0%') {
+                            fill.style.width = width;
+                        }
+                    });
+                    const circles = entry.target.querySelectorAll('.circle-progress');
+                    circles.forEach(circle => {
+                        const dasharray = circle.getAttribute('stroke-dasharray');
+                        const dashoffset = circle.getAttribute('stroke-dashoffset');
+                        if (dashoffset) {
+                            circle.style.strokeDashoffset = dashoffset;
+                        }
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        // Initialisation des barres à 0 puis animation
+        document.querySelectorAll('.progress-fill').forEach(bar => {
+            const targetWidth = bar.getAttribute('data-width') || bar.style.width;
+            if (targetWidth && targetWidth !== '0%') {
+                bar.setAttribute('data-width', targetWidth);
+                bar.style.width = '0%';
+            }
+        });
+        
+        document.querySelectorAll('.circle-progress').forEach(circle => {
+            const dashoffset = circle.getAttribute('stroke-dashoffset');
+            if (dashoffset) {
+                circle.setAttribute('data-offset', dashoffset);
+                circle.style.strokeDashoffset = '440';
+            }
+        });
+
+        const containers = document.querySelectorAll('.progress-bar, .circular-chart');
+        containers.forEach(container => {
+            observer.observe(container.closest('.space-y-5') || container.parentElement);
+        });
+    </script>
+</body>
+</html>

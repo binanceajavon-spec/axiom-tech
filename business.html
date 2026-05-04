@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AXIOM | Nos réalisations</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&family=Jura:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <style>
+        :root {
+            --primary: #c97fff;
+            --primary-dim: rgba(201, 127, 255, 0.15);
+            --primary-border: rgba(201, 127, 255, 0.2);
+            --bg: #000000;
+            --surface: #080808;
+            --surface-2: #0e0e0e;
+            --zinc-line: rgba(255,255,255,0.06);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--bg);
+            color: #fff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .font-jura { font-family: 'Jura', sans-serif; }
+        .font-jura-bold { font-family: 'Jura', sans-serif; font-weight: 700; }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+            opacity: 0.025;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+        }
+        .orb-1 {
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(201,127,255,0.12) 0%, transparent 70%);
+            top: -200px; left: -100px;
+        }
+        .orb-2 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(201,127,255,0.08) 0%, transparent 70%);
+            bottom: -100px; right: -50px;
+        }
+
+        .hero-gif {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, 
+                rgba(0, 0, 0, 0.8) 0%,
+                rgba(0, 0, 0, 0.5) 50%,
+                rgba(0, 0, 0, 0.9) 100%);
+            z-index: 1;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes shimmer {
+            0%   { background-position: -400px 0; }
+            100% { background-position: 400px 0; }
+        }
+
+        .fade-up { opacity: 0; animation: fadeInUp 0.7s ease-out forwards; }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+
+        .label-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Jura', sans-serif;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--primary);
+            background: var(--primary-dim);
+            border: 1px solid var(--primary-border);
+            border-radius: 100px;
+            padding: 5px 14px;
+        }
+        .label-pill::before {
+            content: '';
+            width: 5px; height: 5px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: block;
+        }
+
+        .section-divider {
+            width: 100%; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201,127,255,0.3), transparent);
+        }
+
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            margin: 0 -8px;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            gap: 24px;
+        }
+        .carousel-slide {
+            flex: 0 0 calc(33.333% - 16px);
+            min-width: 300px;
+            background: var(--surface);
+            border: 1px solid var(--zinc-line);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .carousel-slide:hover {
+            border-color: rgba(201,127,255,0.3);
+            transform: translateY(-6px);
+        }
+        .carousel-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #1a1a2e, #0a0a1a);
+            transition: transform 0.4s ease;
+        }
+        .carousel-slide:hover .carousel-img {
+            transform: scale(1.03);
+        }
+        .carousel-content {
+            padding: 20px;
+        }
+        .brand-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--zinc-line);
+        }
+        .brand-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            object-fit: cover;
+            background: var(--primary-dim);
+            border: 1px solid var(--primary-border);
+        }
+        .brand-info {
+            flex: 1;
+        }
+        .brand-name {
+            font-family: 'Jura', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+        .project-title {
+            font-size: 13px;
+            color: var(--primary);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+        .creation-date {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--primary-dim);
+            border-radius: 100px;
+            padding: 4px 10px;
+            font-size: 11px;
+            font-family: 'Jura', sans-serif;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+        .project-desc {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+        .site-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary-dim);
+            border: 1px solid var(--primary-border);
+            border-radius: 40px;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-family: 'Jura', sans-serif;
+        }
+        .site-link:hover {
+            background: var(--primary);
+            color: #000;
+            border-color: var(--primary);
+        }
+        .carousel-btn {
+            background: transparent;
+            border: 1px solid var(--primary-border);
+            border-radius: 32px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: rgba(255,255,255,0.7);
+        }
+        .carousel-btn:hover {
+            border-color: var(--primary);
+            background: var(--primary-dim);
+            color: var(--primary);
+        }
+
+        .software-card {
+            background: var(--surface);
+            border: 1px solid var(--zinc-line);
+            border-radius: 20px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .software-card:hover {
+            border-color: rgba(201,127,255,0.3);
+            transform: translateY(-4px);
+        }
+        .software-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--primary-dim);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid var(--primary-border);
+            overflow: hidden;
+        }
+        .software-icon-img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+        .software-info {
+            flex: 1;
+        }
+        .software-name {
+            font-family: 'Jura', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+        .software-category {
+            font-size: 12px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .software-desc {
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 6px;
+        }
+        .software-link {
+            color: rgba(255,255,255,0.4);
+            transition: color 0.2s;
+            text-decoration: none;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        .software-link:hover {
+            color: var(--primary);
+        }
+
+        .cta-section {
+            background: var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 400px; height: 400px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+        }
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            bottom: -100px; left: -60px;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.08);
+        }
+
+        footer {
+            background: #000;
+            border-top: 1px solid var(--zinc-line);
+        }
+        .footer-link {
+            font-family: 'Jura', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+            transition: color 0.2s ease;
+            text-decoration: none;
+        }
+        .footer-link:hover { color: var(--primary); }
+        .social-btn {
+            width: 38px; height: 38px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: rgba(255,255,255,0.4);
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+        .social-btn:hover { border-color: var(--primary); color: var(--primary); }
+
+        .shimmer-text {
+            background: linear-gradient(90deg, #c97fff 0%, #fff 40%, #c97fff 80%);
+            background-size: 400px 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+        }
+
+        @media (max-width: 1024px) {
+            .carousel-slide { flex: 0 0 calc(50% - 12px); }
+        }
+        @media (max-width: 640px) {
+            .carousel-slide { flex: 0 0 calc(100% - 0px); }
+        }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: rgba(201,127,255,0.3); border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-black text-white min-h-screen flex flex-col">
+
+    <div id="navbar-container"></div>
+    <script src="navbar.js"></script>
+
+    <main class="flex-grow">
+
+        <!-- Hero avec GIF -->
+        <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <img class="hero-gif" src="images/hero.gif" alt="Hero animation">
+            <div class="hero-overlay"></div>
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="absolute inset-0 opacity-[0.03] z-10" style="background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+            <div class="relative z-20 max-w-[1280px] mx-auto px-8 text-center">
+                <div class="fade-up flex justify-center mb-6">
+                    <span class="label-pill">Notre portfolio</span>
+                </div>
+                <h1 class="font-jura-bold text-5xl md:text-6xl lg:text-7xl tracking-tight mb-6 fade-up delay-1 leading-tight">
+                    Nos <span class="shimmer-text">réalisations</span>
+                </h1>
+                <p class="text-zinc-300 text-lg max-w-2xl mx-auto fade-up delay-2 leading-relaxed">
+                    Découvrez nos créations web et logiciels sur-mesure, conçus avec passion et expertise.
+                </p>
+                <div class="mt-16 fade-up delay-3 flex justify-center">
+                    <div style="width:1px; height:50px; background: linear-gradient(to bottom, rgba(201,127,255,0.6), transparent);"></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- CARROUSSEL SITES WEB -->
+        <section class="py-20">
+            <div class="max-w-[1280px] mx-auto px-8">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-4">
+                    <div>
+                        <div class="mb-3"><span class="label-pill">Sites web</span></div>
+                        <h2 class="font-jura-bold text-3xl md:text-4xl text-white">Projets <span style="color:var(--primary)">digitaux</span></h2>
+                        <p class="text-zinc-400 mt-3 max-w-xl">Découvrez nos réalisations web pour des marques d'exception.</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <button id="prevWebBtn" class="carousel-btn"><span class="material-symbols-outlined">chevron_left</span></button>
+                        <button id="nextWebBtn" class="carousel-btn"><span class="material-symbols-outlined">chevron_right</span></button>
+                    </div>
+                </div>
+
+                <div class="carousel-container">
+                    <div id="webCarouselTrack" class="carousel-track"></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- SECTION LOGICIELS -->
+        <section class="py-20">
+            <div class="max-w-[1280px] mx-auto px-8">
+                <div class="text-center mb-14">
+                    <div class="flex justify-center mb-5"><span class="label-pill">Logiciels sur mesure</span></div>
+                    <h2 class="font-jura-bold text-3xl md:text-4xl text-white">Applications & <span style="color:var(--primary)">solutions logicielles</span></h2>
+                    <p class="text-zinc-400 mt-3 max-w-2xl mx-auto">Des outils puissants, intuitifs et adaptés à vos métiers.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6" id="softwareGrid"></div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- CTA -->
+        <section class="cta-section py-24 relative">
+            <div class="relative z-10 max-w-3xl mx-auto px-8 text-center">
+                <span class="inline-block font-jura-bold text-xs tracking-widest uppercase text-black/50 mb-6">Passez à l'action</span>
+                <h2 class="font-jura-bold text-3xl md:text-4xl lg:text-5xl text-black mb-6 leading-tight">
+                    Vous avez un projet&nbsp;?
+                </h2>
+                <p class="text-black/70 mb-10 text-lg leading-relaxed">
+                    Discutons de votre idée et donnons vie à votre vision digitale.
+                </p>
+                <button style="background:#000; color:var(--primary); border:none; padding:16px 40px; font-family:'Jura',sans-serif; font-weight:700; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; border-radius:8px; cursor:pointer; transition:background 0.2s;" onmouseover="this.style.background='#111'" onmouseout="this.style.background='#000'">
+                    Discuter de votre projet
+                </button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-14">
+            <div class="max-w-7xl mx-auto px-8">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-10 mb-10">
+                    <div class="flex flex-col items-center md:items-start gap-4">
+                        <img src="images/footer.png" alt="AXIOM" class="h-10 w-auto">
+                        <p class="text-xs text-zinc-600 tracking-wider" style="font-family:'Jura',sans-serif;">© 2024 Axiom. Réinventez votre entreprise.</p>
+                    </div>
+                    <nav class="flex flex-wrap justify-center gap-6">
+                        <a class="footer-link" href="#">Services</a>
+                        <a class="footer-link" href="#">Business</a>
+                        <a class="footer-link" href="#">À propos</a>
+                        <a class="footer-link" href="#">Media</a>
+                        <a class="footer-link" href="#">Confidentialité</a>
+                    </nav>
+                    <div class="flex gap-3">
+                        <div class="social-btn"><span class="material-symbols-outlined" style="font-size:17px;">share</span></div>
+                        <div class="social-btn"><span class="material-symbols-outlined" style="font-size:17px;">language</span></div>
+                    </div>
+                </div>
+                <div style="height:1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent); margin-bottom: 24px;"></div>
+                <div class="flex justify-center gap-8">
+                    <a href="tel:0748345939" class="footer-link hover:text-primary" style="font-size:11px;">📞 07 48 34 59 39</a>
+                    <a href="mailto:axiom@gmail.com" class="footer-link" style="font-size:11px;">✉️ axiom@gmail.com</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // ----- SITES WEB (images associées selon l'ordre 1 à 5) -----
+        const websites = [
+            { 
+                brandName: "PALAIS AKWA",
+                projectTitle: "Palais des Congrès",
+                creationDate: "2023",
+                description: "Palais des congrès et événements prestigieux à Abidjan, lieu incontournable pour vos manifestations.",
+                image: "palaisdakwa.jpg",
+                link: "https://palais-akwa.com/"
+            },
+            { 
+                brandName: "NAMA RESTAURANT",
+                projectTitle: "Cuisine Fusion",
+                creationDate: "2024",
+                description: "Cuisine fusion et ambiance unique en plein cœur de la ville, une expérience culinaire inoubliable.",
+                image: "nama.jpg",
+                link: "https://www.namarestaurant.fr/"
+            },
+            { 
+                brandName: "CHEZ RABI",
+                projectTitle: "Saveurs Orientales",
+                creationDate: "2023",
+                description: "Saveurs orientales et traditions culinaires authentiques dans un cadre chaleureux.",
+                image: "rabi.jpg",
+                link: "https://chezrabi.com/"
+            },
+            { 
+                brandName: "LA MAISON PALMIER",
+                projectTitle: "Lieu d'exception",
+                creationDate: "2023",
+                description: "Lieu d'exception et résidence de charme alliant élégance et authenticité.",
+                image: "palmier.jpg",
+                link: "https://www.lamaisonpalmier.com/"
+            },
+            { 
+                brandName: "LE JOANNES",
+                projectTitle: "Restaurant Gastronomique",
+                creationDate: "2024",
+                description: "Restaurant gastronomique d'exception, art de vivre français et cuisine étoilée au cœur de la ville.",
+                image: "lejoannes.jpg",
+                link: "https://lejoannes.com/fr/"
+            },
+            { 
+                brandName: "THE ONE",
+                projectTitle: "Plateforme Premium",
+                creationDate: "2024",
+                description: "Plateforme de services haut de gamme en Côte d'Ivoire offrant une expérience utilisateur unique.",
+                image: "theone.jpg",
+                link: "https://theone.ci/fr/accueil/"
+            }
+        ];
+
+        // ----- LOGICIELS -----
+        const softwares = [
+            { 
+                name: "SCOLAR", 
+                category: "Éducation", 
+                desc: "Gestion scolaire complète : notes, emplois du temps, communication parents-professeurs.", 
+                icon: "📚", 
+                link: "https://axiom-demo.com/scolar",
+                illustration: "https://picsum.photos/id/100/64/64"
+            },
+            { 
+                name: "RM DATA", 
+                category: "Data Analytics", 
+                desc: "Solution BI avancée pour l'analyse et la visualisation de données massives.", 
+                icon: "📊", 
+                link: "https://axiom-demo.com/rmdata",
+                illustration: "https://picsum.photos/id/0/64/64"
+            },
+            { 
+                name: "WISUS", 
+                category: "Vision & IA", 
+                desc: "Reconnaissance intelligente appliqué à la sécurité et au retail.", 
+                icon: "👁️", 
+                link: "https://axiom-demo.com/wisus",
+                illustration: "https://picsum.photos/id/1/64/64"
+            },
+            { 
+                name: "RM PRO", 
+                category: "Gestion d'entreprise", 
+                desc: "ERP tout-en-un pour PME : facturation, stocks, CRM, RH.", 
+                icon: "🏢", 
+                link: "https://axiom-demo.com/rmpro",
+                illustration: "https://picsum.photos/id/21/64/64"
+            },
+            { 
+                name: "NEXUS FLOW", 
+                category: "Automatisation", 
+                desc: "Workflow automation pour processus métier complexes.", 
+                icon: "⚙️", 
+                link: "https://axiom-demo.com/nexus-flow",
+                illustration: "https://picsum.photos/id/22/64/64"
+            },
+            { 
+                name: "MEDIATRUST", 
+                category: "Santé", 
+                desc: "Dossier médical partagé sécurisé blockchain.", 
+                icon: "🔒", 
+                link: "https://axiom-demo.com/mediatrust",
+                illustration: "https://picsum.photos/id/48/64/64"
+            }
+        ];
+
+        // Construction carrousel web
+        const track = document.getElementById('webCarouselTrack');
+        let currentIndex = 0;
+        let slidesPerView = 3;
+
+        function updateSlidesPerView() {
+            if (window.innerWidth <= 640) slidesPerView = 1;
+            else if (window.innerWidth <= 1024) slidesPerView = 2;
+            else slidesPerView = 3;
+        }
+
+        function renderCarousel() {
+            track.innerHTML = '';
+            websites.forEach(web => {
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                slide.innerHTML = `
+                    <div>
+                        <div class="overflow-hidden">
+                            <img class="carousel-img" src="images/${web.image}" alt="${web.brandName}" loading="lazy" onerror="this.src='https://picsum.photos/600/400?random=1'">
+                        </div>
+                        <div class="carousel-content">
+                            <div class="brand-header">
+                                <div class="brand-info">
+                                    <div class="brand-name">${web.brandName}</div>
+                                    <div class="project-title">${web.projectTitle}</div>
+                                </div>
+                            </div>
+                            <div class="creation-date">
+                                <span class="material-symbols-outlined" style="font-size:12px;">calendar_today</span>
+                                ${web.creationDate}
+                            </div>
+                            <div class="project-desc">${web.description}</div>
+                            <a href="${web.link}" target="_blank" rel="noopener noreferrer" class="site-link">
+                                Visiter le site <span class="material-symbols-outlined" style="font-size:16px;">arrow_outward</span>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                track.appendChild(slide);
+            });
+            updateTransform();
+        }
+
+        function updateTransform() {
+            if (track.children.length === 0) return;
+            const slideWidth = track.children[0]?.offsetWidth || 0;
+            const gap = 24;
+            const step = (slideWidth + gap);
+            const transformValue = - (currentIndex * step);
+            track.style.transform = `translateX(${transformValue}px)`;
+        }
+
+        function nextSlide() {
+            const maxIndex = Math.max(0, websites.length - slidesPerView);
+            if (currentIndex < maxIndex) currentIndex++;
+            else currentIndex = 0;
+            updateTransform();
+        }
+
+        function prevSlide() {
+            const maxIndex = Math.max(0, websites.length - slidesPerView);
+            if (currentIndex > 0) currentIndex--;
+            else currentIndex = maxIndex;
+            updateTransform();
+        }
+
+        function recalcCarousel() {
+            updateSlidesPerView();
+            const maxAllowed = Math.max(0, websites.length - slidesPerView);
+            if (currentIndex > maxAllowed) currentIndex = maxAllowed;
+            if (currentIndex < 0) currentIndex = 0;
+            updateTransform();
+        }
+
+        window.addEventListener('resize', () => recalcCarousel());
+        document.getElementById('prevWebBtn').addEventListener('click', prevSlide);
+        document.getElementById('nextWebBtn').addEventListener('click', nextSlide);
+        renderCarousel();
+        setTimeout(() => {
+            updateSlidesPerView();
+            recalcCarousel();
+        }, 100);
+
+        // Construction grille logiciels
+        const softwareGrid = document.getElementById('softwareGrid');
+        softwares.forEach(sw => {
+            const card = document.createElement('div');
+            card.className = 'software-card';
+            card.innerHTML = `
+                <div class="software-icon">
+                    <span style="font-size:32px;">${sw.icon}</span>
+                </div>
+                <div class="software-info">
+                    <div class="software-name">${sw.name}</div>
+                    <div class="software-category">${sw.category}</div>
+                    <div class="software-desc">${sw.desc}</div>
+                    <a href="${sw.link}" target="_blank" class="software-link">
+                        En savoir plus <span class="material-symbols-outlined" style="font-size:16px;">open_in_new</span>
+                    </a>
+                </div>
+            `;
+            softwareGrid.appendChild(card);
+        });
+
+        // Animation au scroll
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((entry, idx) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = `fadeInUp 0.6s ease-out ${idx * 0.05}s forwards`;
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.carousel-slide, .software-card').forEach(el => {
+            el.style.opacity = '0';
+            io.observe(el);
+        });
+    </script>
+</body>
+</html>

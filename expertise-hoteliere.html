@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="AXIOM - Expertise Hôtelière & Croissance" name="description"/>
+    <title>AXIOM | Expertise Hôtelière</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        :root {
+            --violet-900: #1a0533;
+            --violet-800: #2d0a57;
+            --violet-700: #4a1080;
+            --violet-600: #6b21a8;
+            --violet-500: #9333ea;
+            --violet-400: #a855f7;
+            --violet-300: #c084fc;
+            --violet-200: #e9d5ff;
+            --violet-100: #f5f0ff;
+            --white: #ffffff;
+            --off-white: #fafaf9;
+            --gray-warm: #a89fbf;
+            --accent: #d946ef;
+            --accent-soft: rgba(217,70,239,0.15);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: var(--white);
+            color: var(--violet-900);
+            margin: 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Jura', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Conteneur principal pour compenser la navbar fixe */
+        .main-content {
+            margin-top: 72px;
+        }
+
+        /* Animation pour les statistiques */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stat-card {
+            animation: fadeUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .stat-card:nth-child(1) { animation-delay: 0s; }
+        .stat-card:nth-child(2) { animation-delay: 0.1s; }
+        .stat-card:nth-child(3) { animation-delay: 0.2s; }
+        .stat-card:nth-child(4) { animation-delay: 0.3s; }
+
+        .bar-fill {
+            transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Effet de survol pour les cartes */
+        .service-card, .pilier-card, .case-card {
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover, .pilier-card:hover, .case-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--violet-400);
+            box-shadow: 0 10px 30px -10px rgba(147,51,234,0.2);
+        }
+
+        /* Dégradés de fond */
+        .hero-gradient {
+            background: linear-gradient(145deg, var(--violet-900) 0%, var(--violet-800) 50%, #3b0764 100%);
+        }
+        
+        .cta-gradient {
+            background: linear-gradient(135deg, var(--violet-700) 0%, var(--violet-500) 100%);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== NAVBAR INJECTÉE ========== -->
+    <div id="navbar-container"></div>
+    <script src="navbar.js"></script>
+
+    <main class="main-content">
+
+        <!-- ── HERO SECTION ── -->
+        <section class="hero-gradient text-white py-24 md:py-32 overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-violet-500/20 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-80 h-80 bg-fuchsia-500/20 rounded-full blur-3xl"></div>
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute inset-0 bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:64px_64px]"></div>
+            </div>
+            
+            <div class="relative max-w-[1280px] mx-auto px-8 grid md:grid-cols-2 items-center gap-16 z-10">
+                <div>
+                    <div class="inline-flex items-center gap-2 border border-violet-300/40 bg-violet-300/10 px-4 py-2 rounded-full mb-6">
+                        <span class="w-2 h-2 bg-violet-300 rounded-full animate-pulse"></span>
+                        <span class="font-jura text-xs font-bold tracking-wider text-violet-200 uppercase">Expertise Sectorielle — Hôtellerie</span>
+                    </div>
+                    <h1 class="font-jura text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+                        L'excellence hôtelière au service de votre <span class="text-violet-300">Croissance</span>
+                    </h1>
+                    <p class="text-lg text-violet-200/80 mb-10 max-w-xl leading-relaxed">
+                        AXIOM accompagne les établissements hôteliers dans la transformation de leur performance grâce à une expertise métier pointue et des leviers stratégiques éprouvés.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button class="bg-white text-violet-800 px-8 py-4 font-jura font-bold rounded hover:shadow-xl transition-all flex items-center gap-2">
+                            Diagnostic offert
+                            <span class="material-symbols-outlined text-lg">hotel</span>
+                        </button>
+                        <button class="border border-white/30 text-white px-8 py-4 font-jura font-bold rounded hover:bg-white/10 transition-all">
+                            Notre approche
+                        </button>
+                    </div>
+                </div>
+                <div class="relative hidden md:block">
+                    <div class="aspect-square rounded-2xl overflow-hidden border border-violet-400/30 shadow-2xl">
+                        <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=600&fit=crop" alt="Hotel lobby"/>
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 bg-gradient-to-r from-violet-600 to-fuchsia-500 p-6 rounded-xl shadow-xl">
+                        <div class="text-3xl font-black font-jura">+38%</div>
+                        <div class="text-xs font-jura tracking-wider">RevPAR moyen généré</div>
+                    </div>
+                    <div class="absolute -top-6 -right-6 bg-white p-5 rounded-xl shadow-xl">
+                        <div class="text-3xl font-black font-jura text-violet-700">96%</div>
+                        <div class="text-xs font-jura tracking-wider text-gray-500">Satisfaction client</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── STATS SECTION ── -->
+        <section class="py-20 bg-violet-900">
+            <div class="max-w-[1280px] mx-auto px-8">
+                <div class="text-center mb-12">
+                    <span class="text-violet-300 font-jura text-sm uppercase tracking-wider">Résultats mesurables</span>
+                    <h2 class="font-jura text-3xl md:text-4xl font-bold text-white mt-2">Notre impact dans l'hôtellerie</h2>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="stat-card text-center p-6 bg-white/5 rounded-xl border border-violet-400/20">
+                        <div class="text-4xl md:text-5xl font-jura font-bold text-violet-300 mb-2">80+</div>
+                        <div class="text-sm text-violet-200/60 font-jura">Établissements accompagnés</div>
+                    </div>
+                    <div class="stat-card text-center p-6 bg-white/5 rounded-xl border border-violet-400/20">
+                        <div class="text-4xl md:text-5xl font-jura font-bold text-violet-300 mb-2">+38%</div>
+                        <div class="text-sm text-violet-200/60 font-jura">RevPAR moyen amélioré</div>
+                    </div>
+                    <div class="stat-card text-center p-6 bg-white/5 rounded-xl border border-violet-400/20">
+                        <div class="text-4xl md:text-5xl font-jura font-bold text-violet-300 mb-2">2.8x</div>
+                        <div class="text-sm text-violet-200/60 font-jura">ROI moyen sur 18 mois</div>
+                    </div>
+                    <div class="stat-card text-center p-6 bg-white/5 rounded-xl border border-violet-400/20">
+                        <div class="text-4xl md:text-5xl font-jura font-bold text-violet-300 mb-2">15+</div>
+                        <div class="text-sm text-violet-200/60 font-jura">Pays couverts</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── BLOC 1 : Expertise Métier (texte gauche / image droite) ── -->
+        <section class="py-24 border-b border-violet-100">
+            <div class="max-w-[1280px] mx-auto px-8 grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-violet-100 px-4 py-2 rounded-full mb-6">
+                        <span class="w-7 h-7 rounded-full bg-violet-600 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-white text-sm">domain</span>
+                        </span>
+                        <span class="font-jura text-xs font-bold text-violet-700 uppercase tracking-wider">Expertise Métier</span>
+                    </div>
+                    <h2 class="font-jura text-3xl md:text-4xl font-bold text-violet-900 mb-6">Une expertise métier sans équivalent</h2>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        Le secteur hôtelier est soumis à des dynamiques complexes : saisonnalité, compétition OTA, attentes clients en constante évolution. AXIOM maîtrise ces spécificités et les traduit en avantages concurrentiels concrets.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <span class="material-symbols-outlined text-violet-500">analytics</span>
+                            <div>
+                                <h4 class="font-jura font-bold text-violet-900">1. Audit de performance hôtelière</h4>
+                                <p class="text-gray-500 text-sm">Analyse approfondie du RevPAR, TRevPAR et des indicateurs clés par rapport au marché.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <span class="material-symbols-outlined text-violet-500">price_change</span>
+                            <div>
+                                <h4 class="font-jura font-bold text-violet-900">2. Stratégie de Revenue Management</h4>
+                                <p class="text-gray-500 text-sm">Optimisation des tarifs, gestion de la parité et déploiement de stratégies de yield avancées.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <span class="material-symbols-outlined text-violet-500">rocket_launch</span>
+                            <div>
+                                <h4 class="font-jura font-bold text-violet-900">3. Croissance & Expérience client</h4>
+                                <p class="text-gray-500 text-sm">Programmes de fidélisation, gestion de la réputation en ligne et transformation du séjour.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-2xl overflow-hidden shadow-xl">
+                    <img class="w-full h-full object-cover aspect-[4/3]" src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=700&h=525&fit=crop" alt="Hotel revenue management"/>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── BLOC 2 : Services Dédiés (image gauche / texte droite) ── -->
+        <section class="py-24 bg-violet-50 border-b border-violet-100">
+            <div class="max-w-[1280px] mx-auto px-8 grid md:grid-cols-2 gap-16 items-center">
+                <div class="order-2 md:order-1 rounded-2xl overflow-hidden shadow-xl">
+                    <img class="w-full h-full object-cover aspect-[4/3]" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=700&h=525&fit=crop" alt="Hotel digital marketing"/>
+                </div>
+                <div class="order-1 md:order-2">
+                    <div class="inline-flex items-center gap-2 bg-violet-100 px-4 py-2 rounded-full mb-6">
+                        <span class="w-7 h-7 rounded-full bg-fuchsia-500 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-white text-sm">hotel_class</span>
+                        </span>
+                        <span class="font-jura text-xs font-bold text-violet-700 uppercase tracking-wider">Services Dédiés</span>
+                    </div>
+                    <h2 class="font-jura text-3xl md:text-4xl font-bold text-violet-900 mb-6">Nos services dédiés à l'hôtellerie</h2>
+                    <div class="space-y-4">
+                        <div class="service-card bg-white p-5 rounded-xl border border-violet-100 flex gap-4">
+                            <span class="material-symbols-outlined text-violet-500">bar_chart</span>
+                            <div>
+                                <h4 class="font-jura font-bold text-violet-900">Revenue Management & Pricing</h4>
+                                <p class="text-gray-500 text-sm">Optimisation dynamique des tarifs, segmentation et gestion multicanale.</p>
+                            </div>
+                        </div>
+                        <div class="service-card bg-white p-5 rounded-xl border border-violet-100 flex gap-4">
+                            <span class="material-symbols-outlined text-violet-500">travel_explore</span>
+                            <div>
+                                <h4 class="font-jura font-bold text-violet-900">Marketing Digital & Acquisition</h4>
+                                <p class="text-gray-500 text-sm">SEO sectoriel, campagnes Google Hotels, Meta Ads et stratégie de contenu.</p>
+                            </div>
+                        </div>
+                        <div class="service-card bg-white p-5 rounded-xl border border-violet-100 flex gap-4">
+                            <span class="material-symbols-outlined text-violet-500">star_rate</span>
+                            <div>
+                                <h4 class="font-jura font-bold text-violet-900">Gestion de la Réputation en Ligne</h4>
+                                <p class="text-gray-500 text-sm">Stratégie ORM et amélioration des scores sur TripAdvisor, Google et Booking.</p>
+                            </div>
+                        </div>
+                        <div class="service-card bg-white p-5 rounded-xl border border-violet-100 flex gap-4">
+                            <span class="material-symbols-outlined text-violet-500">loyalty</span>
+                            <div>
+                                <h4 class="font-jura font-bold text-violet-900">Fidélisation & CRM</h4>
+                                <p class="text-gray-500 text-sm">Programmes loyalty, segmentation clientèle et personnalisation des offres.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── PILIERS D'EXPERTISE ── -->
+        <section class="py-24 bg-white">
+            <div class="max-w-[1280px] mx-auto px-8">
+                <div class="text-center mb-16">
+                    <span class="text-violet-500 font-jura text-sm uppercase tracking-wider">Approche 360°</span>
+                    <h2 class="font-jura text-3xl md:text-4xl font-bold text-violet-900 mt-2">Nos piliers d'expertise hôtelière</h2>
+                    <p class="text-gray-500 mt-4 max-w-2xl mx-auto">Une couverture complète de tous les leviers de croissance de votre établissement</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="pilier-card bg-violet-50/30 p-8 rounded-2xl border border-violet-100 text-center">
+                        <div class="w-32 h-32 mx-auto mb-6 relative">
+                            <svg class="w-full h-full transform -rotate-90">
+                                <circle cx="64" cy="64" r="58" fill="none" stroke="#e9d5ff" stroke-width="8"/>
+                                <circle cx="64" cy="64" r="58" fill="none" stroke="#a855f7" stroke-width="8" stroke-dasharray="364" stroke-dashoffset="73" stroke-linecap="round"/>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-2xl font-jura font-bold text-violet-600">80%</span>
+                            </div>
+                        </div>
+                        <h3 class="font-jura text-xl font-bold text-violet-900 mb-2">Optimisation RevPAR</h3>
+                        <p class="text-gray-500 text-sm">Maximisation du revenu par chambre disponible grâce au revenue management avancé</p>
+                    </div>
+                    <div class="pilier-card bg-violet-50/30 p-8 rounded-2xl border border-violet-100 text-center">
+                        <div class="w-32 h-32 mx-auto mb-6 relative">
+                            <svg class="w-full h-full transform -rotate-90">
+                                <circle cx="64" cy="64" r="58" fill="none" stroke="#e9d5ff" stroke-width="8"/>
+                                <circle cx="64" cy="64" r="58" fill="none" stroke="#d946ef" stroke-width="8" stroke-dasharray="364" stroke-dashoffset="109" stroke-linecap="round"/>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-2xl font-jura font-bold text-fuchsia-500">70%</span>
+                            </div>
+                        </div>
+                        <h3 class="font-jura text-xl font-bold text-violet-900 mb-2">Expérience Client</h3>
+                        <p class="text-gray-500 text-sm">Personnalisation du séjour et fidélisation pour générer des revenus récurrents</p>
+                    </div>
+                    <div class="pilier-card bg-violet-50/30 p-8 rounded-2xl border border-violet-100 text-center">
+                        <div class="w-32 h-32 mx-auto mb-6 relative">
+                            <svg class="w-full h-full transform -rotate-90">
+                                <circle cx="64" cy="64" r="58" fill="none" stroke="#e9d5ff" stroke-width="8"/>
+                                <circle cx="64" cy="64" r="58" fill="none" stroke="#c084fc" stroke-width="8" stroke-dasharray="364" stroke-dashoffset="182" stroke-linecap="round"/>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-2xl font-jura font-bold text-violet-400">50%</span>
+                            </div>
+                        </div>
+                        <h3 class="font-jura text-xl font-bold text-violet-900 mb-2">Distribution Directe</h3>
+                        <p class="text-gray-500 text-sm">Réduction de la dépendance OTA et augmentation du taux de réservation directe</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── BARRES DE COMPÉTENCES + MÉTHODOLOGIE ── -->
+        <section class="py-24 bg-violet-50">
+            <div class="max-w-[1280px] mx-auto px-8">
+                <div class="grid md:grid-cols-2 gap-16 items-start">
+                    <div>
+                        <span class="text-violet-500 font-jura text-sm uppercase tracking-wider">Pourquoi AXIOM</span>
+                        <h2 class="font-jura text-3xl md:text-4xl font-bold text-violet-900 mt-2 mb-8">Une maîtrise prouvée du secteur</h2>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-jura font-semibold text-violet-900">Revenue Management avancé</span>
+                                    <span class="font-jura font-bold text-violet-600">97%</span>
+                                </div>
+                                <div class="h-2 bg-violet-200 rounded-full overflow-hidden">
+                                    <div class="bar-fill h-full bg-gradient-to-r from-violet-600 to-fuchsia-500 rounded-full" style="width: 97%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-jura font-semibold text-violet-900">Distribution multicanale</span>
+                                    <span class="font-jura font-bold text-violet-600">91%</span>
+                                </div>
+                                <div class="h-2 bg-violet-200 rounded-full overflow-hidden">
+                                    <div class="bar-fill h-full bg-gradient-to-r from-violet-600 to-fuchsia-500 rounded-full" style="width: 91%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-jura font-semibold text-violet-900">Marketing & Branding hôtelier</span>
+                                    <span class="font-jura font-bold text-violet-600">89%</span>
+                                </div>
+                                <div class="h-2 bg-violet-200 rounded-full overflow-hidden">
+                                    <div class="bar-fill h-full bg-gradient-to-r from-violet-600 to-fuchsia-500 rounded-full" style="width: 89%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-jura font-semibold text-violet-900">Satisfaction & fidélisation client</span>
+                                    <span class="font-jura font-bold text-violet-600">96%</span>
+                                </div>
+                                <div class="h-2 bg-violet-200 rounded-full overflow-hidden">
+                                    <div class="bar-fill h-full bg-gradient-to-r from-violet-600 to-fuchsia-500 rounded-full" style="width: 96%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl border border-violet-100 shadow-sm">
+                        <h3 class="font-jura text-2xl font-bold text-violet-900 mb-6">Méthodologie AXIOM Hotel</h3>
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-violet-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="font-jura font-bold text-violet-600">1</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-jura font-bold text-violet-900">Audit & Benchmark</h4>
+                                    <p class="text-gray-500 text-sm">Analyse complète de vos indicateurs vs le marché et vos concurrents directs</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-violet-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="font-jura font-bold text-violet-600">2</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-jura font-bold text-violet-900">Stratégie sur-mesure</h4>
+                                    <p class="text-gray-500 text-sm">Feuille de route personnalisée avec objectifs, KPIs et jalons mesurables</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-violet-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="font-jura font-bold text-violet-600">3</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-jura font-bold text-violet-900">Déploiement agile</h4>
+                                    <p class="text-gray-500 text-sm">Mise en œuvre par phases avec pilotage hebdomadaire et ajustements continus</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-violet-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="font-jura font-bold text-violet-600">4</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-jura font-bold text-violet-900">Optimisation continue</h4>
+                                    <p class="text-gray-500 text-sm">Suivi des performances et optimisation basée sur la data en temps réel</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── CAS CLIENTS ── -->
+        <section class="py-24 bg-white">
+            <div class="max-w-[1280px] mx-auto px-8">
+                <div class="text-center mb-16">
+                    <span class="text-violet-500 font-jura text-sm uppercase tracking-wider">Cas Clients</span>
+                    <h2 class="font-jura text-3xl md:text-4xl font-bold text-violet-900 mt-2">Transformations réelles</h2>
+                    <p class="text-gray-500 mt-4 max-w-2xl mx-auto">Des établissements qui ont fait confiance à AXIOM pour accélérer leur performance</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="case-card bg-violet-50/30 p-6 rounded-xl border border-violet-100">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-full bg-violet-100 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-violet-600">apartment</span>
+                            </div>
+                            <div>
+                                <h4 class="font-jura font-bold text-violet-900">Hôtel Boutique — Paris</h4>
+                                <p class="text-xs text-gray-500">45 chambres · 4 étoiles</p>
+                            </div>
+                        </div>
+                        <div class="text-4xl font-jura font-bold text-violet-600 mb-1">+52%</div>
+                        <p class="text-sm text-gray-500 mb-3">de revenu direct en 6 mois</p>
+                        <p class="text-sm text-gray-600 mb-4">Stratégie de désintermédiation OTA, refonte du site et campagne Google Hotels ciblée.</p>
+                        <div class="flex gap-4 pt-3 border-t border-violet-100">
+                            <div><span class="font-jura font-bold text-violet-600">4.8★</span><p class="text-xs text-gray-500">Note Google</p></div>
+                            <div><span class="font-jura font-bold text-violet-600">+28%</span><p class="text-xs text-gray-500">Taux d'occupation</p></div>
+                        </div>
+                    </div>
+                    <div class="case-card bg-violet-50/30 p-6 rounded-xl border border-violet-100">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-full bg-fuchsia-100 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-fuchsia-500">beach_access</span>
+                            </div>
+                            <div>
+                                <h4 class="font-jura font-bold text-violet-900">Resort & Spa — Côte d'Ivoire</h4>
+                                <p class="text-xs text-gray-500">120 chambres · 5 étoiles</p>
+                            </div>
+                        </div>
+                        <div class="text-4xl font-jura font-bold text-violet-600 mb-1">+41%</div>
+                        <p class="text-sm text-gray-500 mb-3">de RevPAR en 12 mois</p>
+                        <p class="text-sm text-gray-600 mb-4">Refonte de la stratégie de revenue management, repositionnement tarifaire.</p>
+                        <div class="flex gap-4 pt-3 border-t border-violet-100">
+                            <div><span class="font-jura font-bold text-violet-600">9.1/10</span><p class="text-xs text-gray-500">Score Booking</p></div>
+                            <div><span class="font-jura font-bold text-violet-600">+35%</span><p class="text-xs text-gray-500">Clients fidèles</p></div>
+                        </div>
+                    </div>
+                    <div class="case-card bg-violet-50/30 p-6 rounded-xl border border-violet-100">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-indigo-500">domain</span>
+                            </div>
+                            <div>
+                                <h4 class="font-jura font-bold text-violet-900">Chaîne — Afrique de l'Ouest</h4>
+                                <p class="text-xs text-gray-500">8 hôtels · 3-4 étoiles</p>
+                            </div>
+                        </div>
+                        <div class="text-4xl font-jura font-bold text-violet-600 mb-1">+63%</div>
+                        <p class="text-sm text-gray-500 mb-3">de visibilité digitale</p>
+                        <p class="text-sm text-gray-600 mb-4">Déploiement d'une stratégie SEO multisite et moteur de réservation centralisé.</p>
+                        <div class="flex gap-4 pt-3 border-t border-violet-100">
+                            <div><span class="font-jura font-bold text-violet-600">+3x</span><p class="text-xs text-gray-500">Trafic organique</p></div>
+                            <div><span class="font-jura font-bold text-violet-600">-22%</span><p class="text-xs text-gray-500">Commission OTA</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+<!-- ── CTA FINALE AVEC GRILLE ANIMÉE ── -->
+<style>
+    .grid-animated {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .grid-animated .grid-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        opacity: var(--grid-opacity, 0.25);
+    }
+    
+    .grid-animated .grid-line-h {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: var(--grid-line-height, 1px);
+        background: linear-gradient(90deg, transparent, var(--grid-color, rgba(255,255,255,0.4)), var(--grid-color, rgba(255,255,255,0.7)), var(--grid-color, rgba(255,255,255,0.4)), transparent);
+        animation: scanHorizontal 4s linear infinite;
+    }
+    
+    .grid-animated .grid-line-v {
+        position: absolute;
+        top: 0;
+        width: var(--grid-line-width, 1.2px);
+        height: 100%;
+        background: linear-gradient(180deg, transparent, var(--grid-color, rgba(255,255,255,0.4)), var(--grid-color, rgba(255,255,255,0.7)), var(--grid-color, rgba(255,255,255,0.4)), transparent);
+        animation: scanVertical 4s linear infinite;
+    }
+    
+    .grid-animated .grid-glow {
+        position: absolute;
+        width: var(--grid-glow-size, 5px);
+        height: var(--grid-glow-size, 5px);
+        background: var(--grid-glow-color, #ffffff);
+        border-radius: 50%;
+        box-shadow: 0 0 10px var(--grid-glow-color, rgba(255,255,255,0.6));
+        opacity: 0;
+        animation: crossGlow 4s linear infinite;
+    }
+    
+    @keyframes scanHorizontal {
+        0% { transform: translateX(-100%); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateX(100%); opacity: 0; }
+    }
+    
+    @keyframes scanVertical {
+        0% { transform: translateY(-100%); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(100%); opacity: 0; }
+    }
+    
+    @keyframes crossGlow {
+        0%, 100% { opacity: 0; transform: scale(1); }
+        45% { opacity: 0; transform: scale(1); }
+        50% { opacity: 0.9; transform: scale(3); }
+        55% { opacity: 0; transform: scale(1); }
+    }
+    
+    .grid-animated .grid-line-h:nth-child(1) { top: 15%; animation-delay: 0s; }
+    .grid-animated .grid-line-h:nth-child(2) { top: 30%; animation-delay: 0.8s; }
+    .grid-animated .grid-line-h:nth-child(3) { top: 45%; animation-delay: 1.6s; }
+    .grid-animated .grid-line-h:nth-child(4) { top: 60%; animation-delay: 2.4s; }
+    .grid-animated .grid-line-h:nth-child(5) { top: 75%; animation-delay: 3.2s; }
+    .grid-animated .grid-line-h:nth-child(6) { top: 90%; animation-delay: 4s; }
+    
+    .grid-animated .grid-line-v:nth-child(7) { left: 8%; animation-delay: 0s; }
+    .grid-animated .grid-line-v:nth-child(8) { left: 16%; animation-delay: 0.4s; }
+    .grid-animated .grid-line-v:nth-child(9) { left: 24%; animation-delay: 0.8s; }
+    .grid-animated .grid-line-v:nth-child(10) { left: 32%; animation-delay: 1.2s; }
+    .grid-animated .grid-line-v:nth-child(11) { left: 40%; animation-delay: 1.6s; }
+    .grid-animated .grid-line-v:nth-child(12) { left: 48%; animation-delay: 2.0s; }
+    .grid-animated .grid-line-v:nth-child(13) { left: 56%; animation-delay: 2.4s; }
+    .grid-animated .grid-line-v:nth-child(14) { left: 64%; animation-delay: 2.8s; }
+    .grid-animated .grid-line-v:nth-child(15) { left: 72%; animation-delay: 3.2s; }
+    .grid-animated .grid-line-v:nth-child(16) { left: 80%; animation-delay: 3.6s; }
+    .grid-animated .grid-line-v:nth-child(17) { left: 88%; animation-delay: 4.0s; }
+    .grid-animated .grid-line-v:nth-child(18) { left: 96%; animation-delay: 4.4s; }
+    
+    .grid-animated .grid-glow:nth-child(19) { top: 15%; left: 8%; animation-delay: 0s; }
+    .grid-animated .grid-glow:nth-child(20) { top: 15%; left: 40%; animation-delay: 0.4s; }
+    .grid-animated .grid-glow:nth-child(21) { top: 15%; left: 72%; animation-delay: 0.8s; }
+    .grid-animated .grid-glow:nth-child(22) { top: 30%; left: 24%; animation-delay: 1.2s; }
+    .grid-animated .grid-glow:nth-child(23) { top: 30%; left: 56%; animation-delay: 1.6s; }
+    .grid-animated .grid-glow:nth-child(24) { top: 30%; left: 88%; animation-delay: 2.0s; }
+    .grid-animated .grid-glow:nth-child(25) { top: 45%; left: 8%; animation-delay: 2.4s; }
+    .grid-animated .grid-glow:nth-child(26) { top: 45%; left: 48%; animation-delay: 2.8s; }
+    .grid-animated .grid-glow:nth-child(27) { top: 45%; left: 80%; animation-delay: 3.2s; }
+    .grid-animated .grid-glow:nth-child(28) { top: 60%; left: 16%; animation-delay: 3.6s; }
+    .grid-animated .grid-glow:nth-child(29) { top: 60%; left: 64%; animation-delay: 4.0s; }
+    .grid-animated .grid-glow:nth-child(30) { top: 60%; left: 96%; animation-delay: 4.4s; }
+    .grid-animated .grid-glow:nth-child(31) { top: 75%; left: 32%; animation-delay: 0s; }
+    .grid-animated .grid-glow:nth-child(32) { top: 75%; left: 72%; animation-delay: 0.4s; }
+    .grid-animated .grid-glow:nth-child(33) { top: 90%; left: 8%; animation-delay: 0.8s; }
+    .grid-animated .grid-glow:nth-child(34) { top: 90%; left: 48%; animation-delay: 1.2s; }
+    .grid-animated .grid-glow:nth-child(35) { top: 90%; left: 88%; animation-delay: 1.6s; }
+    .grid-animated .grid-glow:nth-child(36) { top: 90%; left: 24%; animation-delay: 2.0s; }
+    .grid-animated .grid-glow:nth-child(37) { top: 90%; left: 64%; animation-delay: 2.4s; }
+    
+    .grid-animated .grid-content {
+        position: relative;
+        z-index: 10;
+    }
+</style>
+
+<section class="cta-gradient py-24 text-center grid-animated" style="--grid-color: rgba(255,255,255,0.5); --grid-glow-color: #ffffff; --grid-opacity: 0.3;">
+    <!-- Animation grille -->
+    <div class="grid-overlay">
+        <div class="grid-line-h"></div>
+        <div class="grid-line-h"></div>
+        <div class="grid-line-h"></div>
+        <div class="grid-line-h"></div>
+        <div class="grid-line-h"></div>
+        <div class="grid-line-h"></div>
+        
+        <div class="grid-line-v"></div>
+        <div class="grid-line-v"></div>
+        <div class="grid-line-v"></div>
+        <div class="grid-line-v"></div>
+        <div class="grid-line-v"></div>
+        <div class="grid-line-v"></div>
+        <div class="grid-line-v"></div>
+        <div class="grid-line-v"></div>
+        <div class="grid-line-v"></div>
+        <div class="grid-line-v"></div>
+        <div class="grid-line-v"></div>
+        <div class="grid-line-v"></div>
+        
+        <div class="grid-glow"></div>
+        <div class="grid-glow"></div>
+        <div class="grid-glow"></div>
+        <div class="grid-glow"></div>
+        <div class="grid-glow"></div>
+        <div class="grid-glow"></div>
+        <div class="grid-glow"></div>
+        <div class="grid-glow"></div>
+        <div class="grid-glow"></div>
+        <div class="grid-glow"></div>
+        <div class="grid-glow"></div>
+        <div class="grid-glow"></div>
+        <div class="grid-glow"></div>
+        <div class="grid-glow"></div>
+        <div class="grid-glow"></div>
+        <div class="grid-glow"></div>
+        <div class="grid-glow"></div>
+        <div class="grid-glow"></div>
+        <div class="grid-glow"></div>
+    </div>
+    
+    <!-- Contenu -->
+    <div class="grid-content max-w-3xl mx-auto px-8">
+        <h2 class="font-jura text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">Prêt à transformer votre établissement ?</h2>
+        <p class="text-white/80 text-lg mb-10 max-w-2xl mx-auto">
+            Bénéficiez d'un diagnostic hôtelier gratuit et découvrez les leviers concrets pour accélérer votre performance et votre rentabilité.
+        </p>
+        <button class="bg-white text-violet-700 px-10 py-5 font-jura font-bold rounded-lg shadow-lg hover:shadow-xl transition-all uppercase tracking-wider">
+            Demander un diagnostic gratuit
+        </button>
+    </div>
+</section>
+       
+
+
+
+
+
+    <!-- ========== FOOTER AXIOM ========== -->
+    <footer class="bg-black border-t border-zinc-800 w-full py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex flex-col items-center md:items-start gap-4">
+                <span class="text-xl font-black text-white font-jura-bold">AXIOM</span>
+                <p class="font-body text-sm tracking-wide text-zinc-500 font-jura-bold">© 2024 AXIOM. Strategic IT Consulting &amp; Auditing.</p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-8">
+                <a class="font-jura-bold text-sm tracking-wide text-zinc-500 hover:text-primary transition-colors duration-200" href="#">Expertise</a>
+                <a class="font-jura-bold text-sm tracking-wide text-zinc-500 hover:text-primary transition-colors duration-200" href="#">Insights</a>
+                <a class="font-jura-bold text-sm tracking-wide text-zinc-500 hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
+                <a class="font-jura-bold text-sm tracking-wide text-zinc-500 hover:text-primary transition-colors duration-200" href="#">Terms of Service</a>
+            </div>
+            
+            <div class="flex gap-4">
+                <div class="w-10 h-10 rounded-full border border-zinc-800 flex items-center justify-center text-zinc-500 hover:text-primary hover:border-primary transition-all cursor-pointer">
+                    <span class="material-symbols-outlined text-xl">share</span>
+                </div>
+                <div class="w-10 h-10 rounded-full border border-zinc-800 flex items-center justify-center text-zinc-500 hover:text-primary hover:border-primary transition-all cursor-pointer">
+                    <span class="material-symbols-outlined text-xl">language</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation des barres de compétences au scroll
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: "0px 0px -100px 0px"
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bars = entry.target.querySelectorAll('.bar-fill');
+                    bars.forEach(bar => {
+                        const targetWidth = bar.style.width;
+                        if (targetWidth && targetWidth !== '0%') {
+                            bar.style.transition = 'width 1.2s cubic-bezier(0.16, 1, 0.3, 1)';
+                            bar.style.width = targetWidth;
+                        }
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // Initialiser les barres
+        document.querySelectorAll('.bar-fill').forEach(bar => {
+            const width = bar.style.width;
+            if (width) {
+                bar.setAttribute('data-width', width);
+                bar.style.width = '0%';
+            }
+        });
+        
+        const barsContainer = document.querySelector('.space-y-6');
+        if (barsContainer) observer.observe(barsContainer);
+    </script>
+</body>
+</html>

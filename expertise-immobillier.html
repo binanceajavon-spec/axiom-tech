@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="AXIOM - Expertise Immobilier & Transformation Digitale" name="description"/>
+    <title>AXIOM | Expertise Immobilier</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        :root {
+            --purple-dark: #1a0b2e;
+            --purple-deep: #2d1b4e;
+            --purple-rich: #4c2a7a;
+            --purple-mid: #6b3fa0;
+            --purple-soft: #8b5cc9;
+            --purple-light: #b794f4;
+            --purple-pale: #d9c6f5;
+            --purple-bglight: #f3eefc;
+            --purple-glow: #a855f7;
+            --white: #ffffff;
+            --gray-light: #e9e4f0;
+            --accent-soft: rgba(168, 85, 247, 0.1);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: var(--white);
+            color: var(--purple-dark);
+            margin: 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Jura', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .main-content {
+            margin-top: 72px;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stat-card {
+            animation: fadeUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .stat-card:nth-child(1) { animation-delay: 0s; }
+        .stat-card:nth-child(2) { animation-delay: 0.1s; }
+        .stat-card:nth-child(3) { animation-delay: 0.2s; }
+        .stat-card:nth-child(4) { animation-delay: 0.3s; }
+
+        .bar-fill {
+            transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .service-card, .pilier-card, .case-card {
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover, .pilier-card:hover, .case-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--purple-soft);
+            box-shadow: 0 10px 30px -10px rgba(139, 92, 201, 0.25);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(145deg, var(--purple-dark) 0%, var(--purple-deep) 50%, var(--purple-rich) 100%);
+        }
+        
+        .cta-gradient {
+            background: linear-gradient(135deg, var(--purple-rich) 0%, var(--purple-mid) 100%);
+        }
+
+        .floating-buildings {
+            position: absolute;
+            right: 5%;
+            bottom: 10%;
+            opacity: 0.12;
+            pointer-events: none;
+        }
+        
+        .floating-buildings svg {
+            width: 200px;
+            height: auto;
+        }
+        
+        .grid-animated {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .grid-animated .grid-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: var(--grid-opacity, 0.2);
+        }
+        
+        .grid-animated .grid-line-h {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: var(--grid-line-height, 1px);
+            background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.4), rgba(168, 85, 247, 0.7), rgba(168, 85, 247, 0.4), transparent);
+            animation: scanHorizontal 4s linear infinite;
+        }
+        
+        .grid-animated .grid-line-v {
+            position: absolute;
+            top: 0;
+            width: var(--grid-line-width, 1.2px);
+            height: 100%;
+            background: linear-gradient(180deg, transparent, rgba(168, 85, 247, 0.4), rgba(168, 85, 247, 0.7), rgba(168, 85, 247, 0.4), transparent);
+            animation: scanVertical 4s linear infinite;
+        }
+        
+        .grid-animated .grid-glow {
+            position: absolute;
+            width: var(--grid-glow-size, 5px);
+            height: var(--grid-glow-size, 5px);
+            background: var(--purple-glow);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--purple-glow);
+            opacity: 0;
+            animation: crossGlow 4s linear infinite;
+        }
+        
+        @keyframes scanHorizontal {
+            0% { transform: translateX(-100%); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateX(100%); opacity: 0; }
+        }
+        
+        @keyframes scanVertical {
+            0% { transform: translateY(-100%); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100%); opacity: 0; }
+        }
+        
+        @keyframes crossGlow {
+            0%, 100% { opacity: 0; transform: scale(1); }
+            45% { opacity: 0; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(3); }
+            55% { opacity: 0; transform: scale(1); }
+        }
+        
+        .grid-animated .grid-line-h:nth-child(1) { top: 15%; animation-delay: 0s; }
+        .grid-animated .grid-line-h:nth-child(2) { top: 30%; animation-delay: 0.8s; }
+        .grid-animated .grid-line-h:nth-child(3) { top: 45%; animation-delay: 1.6s; }
+        .grid-animated .grid-line-h:nth-child(4) { top: 60%; animation-delay: 2.4s; }
+        .grid-animated .grid-line-h:nth-child(5) { top: 75%; animation-delay: 3.2s; }
+        .grid-animated .grid-line-h:nth-child(6) { top: 90%; animation-delay: 4s; }
+        
+        .grid-animated .grid-line-v:nth-child(7) { left: 8%; animation-delay: 0s; }
+        .grid-animated .grid-line-v:nth-child(8) { left: 16%; animation-delay: 0.4s; }
+        .grid-animated .grid-line-v:nth-child(9) { left: 24%; animation-delay: 0.8s; }
+        .grid-animated .grid-line-v:nth-child(10) { left: 32%; animation-delay: 1.2s; }
+        .grid-animated .grid-line-v:nth-child(11) { left: 40%; animation-delay: 1.6s; }
+        .grid-animated .grid-line-v:nth-child(12) { left: 48%; animation-delay: 2.0s; }
+        .grid-animated .grid-line-v:nth-child(13) { left: 56%; animation-delay: 2.4s; }
+        .grid-animated .grid-line-v:nth-child(14) { left: 64%; animation-delay: 2.8s; }
+        .grid-animated .grid-line-v:nth-child(15) { left: 72%; animation-delay: 3.2s; }
+        .grid-animated .grid-line-v:nth-child(16) { left: 80%; animation-delay: 3.6s; }
+        .grid-animated .grid-line-v:nth-child(17) { left: 88%; animation-delay: 4.0s; }
+        .grid-animated .grid-line-v:nth-child(18) { left: 96%; animation-delay: 4.4s; }
+        
+        .grid-animated .grid-glow:nth-child(19) { top: 15%; left: 8%; animation-delay: 0s; }
+        .grid-animated .grid-glow:nth-child(20) { top: 15%; left: 40%; animation-delay: 0.4s; }
+        .grid-animated .grid-glow:nth-child(21) { top: 15%; left: 72%; animation-delay: 0.8s; }
+        .grid-animated .grid-glow:nth-child(22) { top: 30%; left: 24%; animation-delay: 1.2s; }
+        .grid-animated .grid-glow:nth-child(23) { top: 30%; left: 56%; animation-delay: 1.6s; }
+        .grid-animated .grid-glow:nth-child(24) { top: 30%; left: 88%; animation-delay: 2.0s; }
+        .grid-animated .grid-glow:nth-child(25) { top: 45%; left: 8%; animation-delay: 2.4s; }
+        .grid-animated .grid-glow:nth-child(26) { top: 45%; left: 48%; animation-delay: 2.8s; }
+        .grid-animated .grid-glow:nth-child(27) { top: 45%; left: 80%; animation-delay: 3.2s; }
+        .grid-animated .grid-glow:nth-child(28) { top: 60%; left: 16%; animation-delay: 3.6s; }
+        .grid-animated .grid-glow:nth-child(29) { top: 60%; left: 64%; animation-delay: 4.0s; }
+        .grid-animated .grid-glow:nth-child(30) { top: 60%; left: 96%; animation-delay: 4.4s; }
+        .grid-animated .grid-glow:nth-child(31) { top: 75%; left: 32%; animation-delay: 0s; }
+        .grid-animated .grid-glow:nth-child(32) { top: 75%; left: 72%; animation-delay: 0.4s; }
+        .grid-animated .grid-glow:nth-child(33) { top: 90%; left: 8%; animation-delay: 0.8s; }
+        .grid-animated .grid-glow:nth-child(34) { top: 90%; left: 48%; animation-delay: 1.2s; }
+        .grid-animated .grid-glow:nth-child(35) { top: 90%; left: 88%; animation-delay: 1.6s; }
+        .grid-animated .grid-glow:nth-child(36) { top: 90%; left: 24%; animation-delay: 2.0s; }
+        .grid-animated .grid-glow:nth-child(37) { top: 90%; left: 64%; animation-delay: 2.4s; }
+        
+        .grid-animated .grid-content {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .text-purple-glow {
+            color: var(--purple-light);
+        }
+        
+        .bg-purple-glow {
+            background: var(--purple-soft);
+        }
+        
+        .border-purple-glow {
+            border-color: var(--purple-light);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="navbar-container"></div>
+    <script src="navbar.js"></script>
+
+    <main class="main-content">
+
+        <!-- HERO SECTION IMMOBILIER - VIOLET -->
+        <section class="hero-gradient text-white py-24 md:py-32 overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-80 h-80 bg-purple-300/20 rounded-full blur-3xl"></div>
+            <div class="absolute inset-0 opacity-5">
+                <div class="absolute inset-0 bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:64px_64px]"></div>
+            </div>
+            
+            <div class="floating-buildings">
+                <svg viewBox="0 0 200 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="15" y="40" width="30" height="60" rx="2" fill="currentColor" opacity="0.3"/>
+                    <rect x="50" y="25" width="35" height="75" rx="2" fill="currentColor" opacity="0.5"/>
+                    <rect x="90" y="15" width="40" height="85" rx="2" fill="currentColor" opacity="0.4"/>
+                    <rect x="135" y="35" width="30" height="65" rx="2" fill="currentColor" opacity="0.35"/>
+                    <rect x="170" y="45" width="25" height="55" rx="2" fill="currentColor" opacity="0.3"/>
+                </svg>
+            </div>
+            
+            <div class="relative max-w-[1280px] mx-auto px-8 grid md:grid-cols-2 items-center gap-16 z-10">
+                <div>
+                    <div class="inline-flex items-center gap-2 border border-purple-300/40 bg-purple-300/10 px-4 py-2 rounded-full mb-6">
+                        <span class="w-2 h-2 bg-purple-300 rounded-full animate-pulse"></span>
+                        <span class="font-jura text-xs font-bold tracking-wider text-purple-200 uppercase">Expertise Sectorielle — Immobilier</span>
+                    </div>
+                    <h1 class="font-jura text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+                        La transformation digitale au service de <span class="text-purple-300">l'immobilier intelligent</span>
+                    </h1>
+                    <p class="text-lg text-purple-200/80 mb-10 max-w-xl leading-relaxed">
+                        AXIOM accompagne promoteurs, agences et gestionnaires immobiliers dans leur digitalisation pour une performance augmentée.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button class="bg-purple-500 text-white px-8 py-4 font-jura font-bold rounded-xl hover:shadow-xl transition-all flex items-center gap-2 shadow-lg shadow-purple-500/30">
+                            Diagnostic offert
+                            <span class="material-symbols-outlined text-lg">real_estate_agent</span>
+                        </button>
+                        <button class="border border-white/30 text-white px-8 py-4 font-jura font-bold rounded-xl hover:bg-white/10 transition-all">
+                            Notre approche
+                        </button>
+                    </div>
+                </div>
+                <div class="relative hidden md:block">
+                    <div class="aspect-square rounded-2xl overflow-hidden border border-purple-400/30 shadow-2xl shadow-purple-500/20">
+                        <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=600&fit=crop" alt="Immeuble moderne"/>
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 bg-gradient-to-r from-purple-700 to-purple-500 p-6 rounded-xl shadow-xl">
+                        <div class="text-3xl font-black font-jura">+38%</div>
+                        <div class="text-xs font-jura tracking-wider">Productivité commerciale</div>
+                    </div>
+                    <div class="absolute -top-6 -right-6 bg-white p-5 rounded-xl shadow-xl">
+                        <div class="text-3xl font-black font-jura text-purple-700">94%</div>
+                        <div class="text-xs font-jura tracking-wider text-purple-500">Satisfaction clients</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS SECTION - VIOLET SOMBRE -->
+        <section class="py-20 bg-purple-dark" style="background-color: #140a24;">
+            <div class="max-w-[1280px] mx-auto px-8">
+                <div class="text-center mb-12">
+                    <span class="text-purple-300 font-jura text-sm uppercase tracking-wider">Résultats mesurables</span>
+                    <h2 class="font-jura text-3xl md:text-4xl font-bold text-white mt-2">Notre impact dans l'immobilier</h2>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="stat-card text-center p-6 bg-white/5 rounded-xl border border-purple-400/20">
+                        <div class="text-4xl md:text-5xl font-jura font-bold text-purple-300 mb-2">150+</div>
+                        <div class="text-sm text-purple-200/60 font-jura">Clients accompagnés</div>
+                    </div>
+                    <div class="stat-card text-center p-6 bg-white/5 rounded-xl border border-purple-400/20">
+                        <div class="text-4xl md:text-5xl font-jura font-bold text-purple-300 mb-2">+38%</div>
+                        <div class="text-sm text-purple-200/60 font-jura">Conversion leads</div>
+                    </div>
+                    <div class="stat-card text-center p-6 bg-white/5 rounded-xl border border-purple-400/20">
+                        <div class="text-4xl md:text-5xl font-jura font-bold text-purple-300 mb-2">2.8x</div>
+                        <div class="text-sm text-purple-200/60 font-jura">ROI sur 18 mois</div>
+                    </div>
+                    <div class="stat-card text-center p-6 bg-white/5 rounded-xl border border-purple-400/20">
+                        <div class="text-4xl md:text-5xl font-jura font-bold text-purple-300 mb-2">250k+</div>
+                        <div class="text-sm text-purple-200/60 font-jura">Biens référencés</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOC 1 : Expertise Immobilier -->
+        <section class="py-24 border-b border-purple-100">
+            <div class="max-w-[1280px] mx-auto px-8 grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-purple-100 px-4 py-2 rounded-full mb-6">
+                        <span class="w-7 h-7 rounded-full bg-purple-700 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-white text-sm">business_center</span>
+                        </span>
+                        <span class="font-jura text-xs font-bold text-purple-800 uppercase tracking-wider">Expertise Immobilière</span>
+                    </div>
+                    <h2 class="font-jura text-3xl md:text-4xl font-bold text-purple-900 mb-6">Une expertise unique au service de la performance immobilière</h2>
+                    <p class="text-purple-700 mb-8 leading-relaxed">
+                        Le secteur immobilier connaît une mutation sans précédent. AXIOM maîtrise les enjeux spécifiques des professionnels et vous accompagne dans votre transformation digitale.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <span class="material-symbols-outlined text-purple-600">analytics</span>
+                            <div>
+                                <h4 class="font-jura font-bold text-purple-900">1. Audit de la performance commerciale</h4>
+                                <p class="text-purple-600 text-sm">Analyse des process de vente, taux de conversion et satisfaction client.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <span class="material-symbols-outlined text-purple-600">devices</span>
+                            <div>
+                                <h4 class="font-jura font-bold text-purple-900">2. Stratégie de digitalisation</h4>
+                                <p class="text-purple-600 text-sm">Déploiement d'outils CRM, visites virtuelles et solutions proptech.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <span class="material-symbols-outlined text-purple-600">rocket_launch</span>
+                            <div>
+                                <h4 class="font-jura font-bold text-purple-900">3. Accompagnement au changement</h4>
+                                <p class="text-purple-600 text-sm">Formation des équipes commerciales et suivi personnalisé.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-2xl overflow-hidden shadow-xl shadow-purple-200">
+                    <img class="w-full h-full object-cover aspect-[4/3]" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=700&h=525&fit=crop" alt="Visite virtuelle immobilière"/>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOC 2 : Services Dédiés -->
+        <section class="py-24 bg-purple-50 border-b border-purple-100">
+            <div class="max-w-[1280px] mx-auto px-8 grid md:grid-cols-2 gap-16 items-center">
+                <div class="order-2 md:order-1 rounded-2xl overflow-hidden shadow-xl shadow-purple-200">
+                    <img class="w-full h-full object-cover aspect-[4/3]" src="https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?w=700&h=525&fit=crop" alt="Tableau de bord immobilier"/>
+                </div>
+                <div class="order-1 md:order-2">
+                    <div class="inline-flex items-center gap-2 bg-purple-100 px-4 py-2 rounded-full mb-6">
+                        <span class="w-7 h-7 rounded-full bg-purple-600 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-white text-sm">apartment</span>
+                        </span>
+                        <span class="font-jura text-xs font-bold text-purple-800 uppercase tracking-wider">Services Dédiés</span>
+                    </div>
+                    <h2 class="font-jura text-3xl md:text-4xl font-bold text-purple-900 mb-6">Nos services pour le secteur immobilier</h2>
+                    <div class="space-y-4">
+                        <div class="service-card bg-white p-5 rounded-xl border border-purple-100 flex gap-4 hover:shadow-lg">
+                            <span class="material-symbols-outlined text-purple-600">real_estate_agent</span>
+                            <div>
+                                <h4 class="font-jura font-bold text-purple-900">CRM & Plateformes transactionnelles</h4>
+                                <p class="text-purple-600 text-sm">Déploiement de solutions CRM sur-mesure pour agences et promoteurs.</p>
+                            </div>
+                        </div>
+                        <div class="service-card bg-white p-5 rounded-xl border border-purple-100 flex gap-4 hover:shadow-lg">
+                            <span class="material-symbols-outlined text-purple-600">analytics</span>
+                            <div>
+                                <h4 class="font-jura font-bold text-purple-900">Market Intelligence & Tableaux de bord</h4>
+                                <p class="text-purple-600 text-sm">Analyse des marchés, pricing dynamique et prévisions.</p>
+                            </div>
+                        </div>
+                        <div class="service-card bg-white p-5 rounded-xl border border-purple-100 flex gap-4 hover:shadow-lg">
+                            <span class="material-symbols-outlined text-purple-600">360</span>
+                            <div>
+                                <h4 class="font-jura font-bold text-purple-900">Visites virtuelles & Digitalisation</h4>
+                                <p class="text-purple-600 text-sm">Visites 3D, réalité augmentée et signature électronique.</p>
+                            </div>
+                        </div>
+                        <div class="service-card bg-white p-5 rounded-xl border border-purple-100 flex gap-4 hover:shadow-lg">
+                            <span class="material-symbols-outlined text-purple-600">psychology</span>
+                            <div>
+                                <h4 class="font-jura font-bold text-purple-900">IA & Recommandation immobilière</h4>
+                                <p class="text-purple-600 text-sm">Algorithmes de matching acheteur/bien et scoring prédictif.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PILIERS D'EXPERTISE -->
+        <section class="py-24 bg-white">
+            <div class="max-w-[1280px] mx-auto px-8">
+                <div class="text-center mb-16">
+                    <span class="text-purple-600 font-jura text-sm uppercase tracking-wider">Approche 360°</span>
+                    <h2 class="font-jura text-3xl md:text-4xl font-bold text-purple-900 mt-2">Nos piliers d'expertise immobilière</h2>
+                    <p class="text-purple-500 mt-4 max-w-2xl mx-auto">Une couverture complète pour une transformation digitale réussie</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="pilier-card bg-purple-50/50 p-8 rounded-2xl border border-purple-200 text-center">
+                        <div class="w-32 h-32 mx-auto mb-6 relative">
+                            <svg class="w-full h-full transform -rotate-90">
+                                <circle cx="64" cy="64" r="58" fill="none" stroke="#e9d5ff" stroke-width="8"/>
+                                <circle cx="64" cy="64" r="58" fill="none" stroke="#8b5cc9" stroke-width="8" stroke-dasharray="364" stroke-dashoffset="73" stroke-linecap="round"/>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-2xl font-jura font-bold text-purple-700">82%</span>
+                            </div>
+                        </div>
+                        <h3 class="font-jura text-xl font-bold text-purple-900 mb-2">Conversion leads</h3>
+                        <p class="text-purple-600 text-sm">Amélioration du taux de transformation des prospects</p>
+                    </div>
+                    <div class="pilier-card bg-purple-50/50 p-8 rounded-2xl border border-purple-200 text-center">
+                        <div class="w-32 h-32 mx-auto mb-6 relative">
+                            <svg class="w-full h-full transform -rotate-90">
+                                <circle cx="64" cy="64" r="58" fill="none" stroke="#e9d5ff" stroke-width="8"/>
+                                <circle cx="64" cy="64" r="58" fill="none" stroke="#a855f7" stroke-width="8" stroke-dasharray="364" stroke-dashoffset="109" stroke-linecap="round"/>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-2xl font-jura font-bold text-purple-500">67%</span>
+                            </div>
+                        </div>
+                        <h3 class="font-jura text-xl font-bold text-purple-900 mb-2">Automatisation</h3>
+                        <p class="text-purple-600 text-sm">Réduction des tâches répétitives et gain de temps</p>
+                    </div>
+                    <div class="pilier-card bg-purple-50/50 p-8 rounded-2xl border border-purple-200 text-center">
+                        <div class="w-32 h-32 mx-auto mb-6 relative">
+                            <svg class="w-full h-full transform -rotate-90">
+                                <circle cx="64" cy="64" r="58" fill="none" stroke="#e9d5ff" stroke-width="8"/>
+                                <circle cx="64" cy="64" r="58" fill="none" stroke="#6b3fa0" stroke-width="8" stroke-dasharray="364" stroke-dashoffset="182" stroke-linecap="round"/>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-2xl font-jura font-bold text-purple-800">51%</span>
+                            </div>
+                        </div>
+                        <h3 class="font-jura text-xl font-bold text-purple-900 mb-2">Optimisation COI</h3>
+                        <p class="text-purple-600 text-sm">Réduction des coûts opérationnels et administratifs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BARRES DE COMPÉTENCES + MÉTHODOLOGIE -->
+        <section class="py-24 bg-purple-50">
+            <div class="max-w-[1280px] mx-auto px-8">
+                <div class="grid md:grid-cols-2 gap-16 items-start">
+                    <div>
+                        <span class="text-purple-600 font-jura text-sm uppercase tracking-wider">Pourquoi AXIOM</span>
+                        <h2 class="font-jura text-3xl md:text-4xl font-bold text-purple-900 mt-2 mb-8">Une maîtrise prouvée du secteur immobilier</h2>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-jura font-semibold text-purple-900">Digitalisation commerciale</span>
+                                    <span class="font-jura font-bold text-purple-700">95%</span>
+                                </div>
+                                <div class="h-2 bg-purple-200 rounded-full overflow-hidden">
+                                    <div class="bar-fill h-full bg-gradient-to-r from-purple-700 to-purple-400 rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-jura font-semibold text-purple-900">CRM & gestion de portefeuille</span>
+                                    <span class="font-jura font-bold text-purple-700">92%</span>
+                                </div>
+                                <div class="h-2 bg-purple-200 rounded-full overflow-hidden">
+                                    <div class="bar-fill h-full bg-gradient-to-r from-purple-700 to-purple-400 rounded-full" style="width: 92%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-jura font-semibold text-purple-900">Visites virtuelles & 3D</span>
+                                    <span class="font-jura font-bold text-purple-700">89%</span>
+                                </div>
+                                <div class="h-2 bg-purple-200 rounded-full overflow-hidden">
+                                    <div class="bar-fill h-full bg-gradient-to-r from-purple-700 to-purple-400 rounded-full" style="width: 89%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-jura font-semibold text-purple-900">Analyse predictive</span>
+                                    <span class="font-jura font-bold text-purple-700">86%</span>
+                                </div>
+                                <div class="h-2 bg-purple-200 rounded-full overflow-hidden">
+                                    <div class="bar-fill h-full bg-gradient-to-r from-purple-700 to-purple-400 rounded-full" style="width: 86%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl border border-purple-200 shadow-sm shadow-purple-100">
+                        <h3 class="font-jura text-2xl font-bold text-purple-900 mb-6">Méthodologie AXIOM Immobilier</h3>
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="font-jura font-bold text-purple-700">1</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-jura font-bold text-purple-900">Audit & Diagnostic</h4>
+                                    <p class="text-purple-600 text-sm">Analyse des process, outils et objectifs commerciaux</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="font-jura font-bold text-purple-700">2</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-jura font-bold text-purple-900">Stratégie sur-mesure</h4>
+                                    <p class="text-purple-600 text-sm">Feuille de route personnalisée : CRM, marketing, data</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="font-jura font-bold text-purple-700">3</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-jura font-bold text-purple-900">Déploiement agile</h4>
+                                    <p class="text-purple-600 text-sm">Mise en œuvre par phases avec accompagnement des équipes</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
+                                    <span class="font-jura font-bold text-purple-700">4</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-jura font-bold text-purple-900">Évaluation & Optimisation</h4>
+                                    <p class="text-purple-600 text-sm">Suivi des KPIs et amélioration continue des dispositifs</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAS CLIENTS -->
+        <section class="py-24 bg-white">
+            <div class="max-w-[1280px] mx-auto px-8">
+                <div class="text-center mb-16">
+                    <span class="text-purple-600 font-jura text-sm uppercase tracking-wider">Cas Clients</span>
+                    <h2 class="font-jura text-3xl md:text-4xl font-bold text-purple-900 mt-2">Transformations réussies</h2>
+                    <p class="text-purple-500 mt-4 max-w-2xl mx-auto">Des professionnels qui ont fait confiance à AXIOM</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="case-card bg-purple-50/50 p-6 rounded-xl border border-purple-200">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-purple-700">apartment</span>
+                            </div>
+                            <div>
+                                <h4 class="font-jura font-bold text-purple-900">Groupe Nexity</h4>
+                                <p class="text-xs text-purple-500">Promoteur national</p>
+                            </div>
+                        </div>
+                        <div class="text-4xl font-jura font-bold text-purple-700 mb-1">+42%</div>
+                        <p class="text-sm text-purple-500 mb-3">de ventes en ligne</p>
+                        <p class="text-sm text-purple-600 mb-4">Déploiement d'un CRM unifié et de visites virtuelles immersives.</p>
+                        <div class="flex gap-4 pt-3 border-t border-purple-200">
+                            <div><span class="font-jura font-bold text-purple-700">89%</span><p class="text-xs text-purple-500">Satisfaction clients</p></div>
+                            <div><span class="font-jura font-bold text-purple-700">-32%</span><p class="text-xs text-purple-500">Temps de cycle</p></div>
+                        </div>
+                    </div>
+                    <div class="case-card bg-purple-50/50 p-6 rounded-xl border border-purple-200">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-purple-700">real_estate_agent</span>
+                            </div>
+                            <div>
+                                <h4 class="font-jura font-bold text-purple-900">Century 21 France</h4>
+                                <p class="text-xs text-purple-500">800 agences</p>
+                            </div>
+                        </div>
+                        <div class="text-4xl font-jura font-bold text-purple-700 mb-1">+57%</div>
+                        <p class="text-sm text-purple-500 mb-3">de leads qualifiés</p>
+                        <p class="text-sm text-purple-600 mb-4">Refonte du portail collaboratif et automatisation marketing.</p>
+                        <div class="flex gap-4 pt-3 border-t border-purple-200">
+                            <div><span class="font-jura font-bold text-purple-700">4.8★</span><p class="text-xs text-purple-500">Note app mobile</p></div>
+                            <div><span class="font-jura font-bold text-purple-700">+71%</span><p class="text-xs text-purple-500">Partage social</p></div>
+                        </div>
+                    </div>
+                    <div class="case-card bg-purple-50/50 p-6 rounded-xl border border-purple-200">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-purple-700">business</span>
+                            </div>
+                            <div>
+                                <h4 class="font-jura font-bold text-purple-900">Foncia Gestion</h4>
+                                <p class="text-xs text-purple-500">200k lots gérés</p>
+                            </div>
+                        </div>
+                        <div class="text-4xl font-jura font-bold text-purple-700 mb-1">+63%</div>
+                        <p class="text-sm text-purple-500 mb-3">d'efficacité administrative</p>
+                        <p class="text-sm text-purple-600 mb-4">Digitalisation des process de gestion locative et portail copropriété.</p>
+                        <div class="flex gap-4 pt-3 border-t border-purple-200">
+                            <div><span class="font-jura font-bold text-purple-700">2.9x</span><p class="text-xs text-purple-500">ROI investissement</p></div>
+                            <div><span class="font-jura font-bold text-purple-700">-48%</span><p class="text-xs text-purple-500">Réclamations</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    
+
+        <!-- CTA FINALE AVEC GRILLE ANIMÉE -->
+        <section class="cta-gradient py-24 text-center grid-animated" style="--grid-color: rgba(168, 85, 247, 0.5); --grid-glow-color: #c084fc; --grid-opacity: 0.25;">
+            <div class="grid-overlay">
+                <div class="grid-line-h"></div><div class="grid-line-h"></div><div class="grid-line-h"></div><div class="grid-line-h"></div><div class="grid-line-h"></div><div class="grid-line-h"></div>
+                <div class="grid-line-v"></div><div class="grid-line-v"></div><div class="grid-line-v"></div><div class="grid-line-v"></div><div class="grid-line-v"></div><div class="grid-line-v"></div><div class="grid-line-v"></div><div class="grid-line-v"></div><div class="grid-line-v"></div><div class="grid-line-v"></div><div class="grid-line-v"></div><div class="grid-line-v"></div>
+                <div class="grid-glow"></div><div class="grid-glow"></div><div class="grid-glow"></div><div class="grid-glow"></div><div class="grid-glow"></div><div class="grid-glow"></div><div class="grid-glow"></div><div class="grid-glow"></div><div class="grid-glow"></div><div class="grid-glow"></div><div class="grid-glow"></div><div class="grid-glow"></div><div class="grid-glow"></div><div class="grid-glow"></div><div class="grid-glow"></div><div class="grid-glow"></div><div class="grid-glow"></div><div class="grid-glow"></div><div class="grid-glow"></div>
+            </div>
+            <div class="grid-content max-w-3xl mx-auto px-8">
+                <h2 class="font-jura text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">Prêt à digitaliser votre activité immobilière ?</h2>
+                <p class="text-white/80 text-lg mb-10 max-w-2xl mx-auto">
+                    Bénéficiez d'un diagnostic immobilier gratuit et découvrez comment la digitalisation peut booster votre performance.
+                </p>
+                <button class="bg-white text-purple-700 px-10 py-5 font-jura font-bold rounded-lg shadow-lg hover:shadow-xl transition-all uppercase tracking-wider shadow-purple-500/30">
+                    Demander un diagnostic gratuit
+                </button>
+            </div>
+        </section>
+
+        <!-- FOOTER AXIOM -->
+        <footer class="bg-black border-t border-purple-900/50 w-full py-12 mt-auto">
+            <div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="flex flex-col items-center md:items-start gap-4">
+                    <span class="text-xl font-black text-white font-jura-bold">AXIOM</span>
+                    <p class="font-body text-sm tracking-wide text-purple-400 font-jura-bold">© 2024 AXIOM. Strategic IT Consulting &amp; Auditing.</p>
+                </div>
+                <div class="flex flex-wrap justify-center gap-8">
+                    <a class="font-jura-bold text-sm tracking-wide text-purple-400 hover:text-purple-300 transition-colors duration-200" href="#">Expertise</a>
+                    <a class="font-jura-bold text-sm tracking-wide text-purple-400 hover:text-purple-300 transition-colors duration-200" href="#">Insights</a>
+                    <a class="font-jura-bold text-sm tracking-wide text-purple-400 hover:text-purple-300 transition-colors duration-200" href="#">Privacy Policy</a>
+                    <a class="font-jura-bold text-sm tracking-wide text-purple-400 hover:text-purple-300 transition-colors duration-200" href="#">Terms of Service</a>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 rounded-full border border-purple-800 flex items-center justify-center text-purple-400 hover:text-purple-300 hover:border-purple-500 transition-all cursor-pointer">
+                        <span class="material-symbols-outlined text-xl">share</span>
+                    </div>
+                    <div class="w-10 h-10 rounded-full border border-purple-800 flex items-center justify-center text-purple-400 hover:text-purple-300 hover:border-purple-500 transition-all cursor-pointer">
+                        <span class="material-symbols-outlined text-xl">language</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            const observerOptions = { threshold: 0.3, rootMargin: "0px 0px -100px 0px" };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bars = entry.target.querySelectorAll('.bar-fill');
+                        bars.forEach(bar => {
+                            const targetWidth = bar.style.width;
+                            if (targetWidth && targetWidth !== '0%') {
+                                bar.style.transition = 'width 1.2s cubic-bezier(0.16, 1, 0.3, 1)';
+                                bar.style.width = targetWidth;
+                            }
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            const barsContainer = document.querySelector('.space-y-6');
+            if (barsContainer) observer.observe(barsContainer);
+        </script>
+    </main>
+</body>
+</html>
