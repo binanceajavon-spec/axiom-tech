@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+<head>
+    <link rel="stylesheet" href="style.css">  
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="AXIOM - Ingénierie Logicielle & Développement Sur-Mesure" name="description"/>
+    <title>AXIOM | Ingénierie Logicielle</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Jura:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#ff7cf5",
+                        "primary-fixed": "#ff5af9",
+                        "secondary-container": "#6a2785",
+                        "inverse-on-surface": "#555555",
+                        "on-secondary-container": "#f0bfff",
+                        "background": "#0e0e0e",
+                        "primary-dim": "#ff51fa",
+                        "surface-container-high": "#1f1f1f",
+                        "primary-container": "#ff5af9",
+                        "tertiary-container": "#609efd",
+                        "on-secondary": "#530c6f",
+                        "secondary-fixed": "#f1c1ff",
+                        "surface-variant": "#262626",
+                        "on-error": "#490013",
+                        "inverse-primary": "#aa00aa",
+                        "on-background": "#ffffff",
+                        "tertiary-dim": "#609efd",
+                        "secondary": "#e197fc",
+                        "primary-fixed-dim": "#fb2ef9",
+                        "surface-dim": "#0e0e0e",
+                        "outline-variant": "#484848",
+                        "error-container": "#a70138",
+                        "on-tertiary-fixed": "#001737",
+                        "on-primary-fixed": "#000000",
+                        "error-dim": "#d73357",
+                        "surface-container-low": "#131313",
+                        "error": "#ff6e84",
+                        "primary": "#ff7cf5",
+                        "surface-container-lowest": "#000000",
+                        "on-tertiary": "#002c5c",
+                        "on-primary": "#580058",
+                        "on-surface": "#ffffff",
+                        "on-secondary-fixed-variant": "#753390",
+                        "on-secondary-fixed": "#550e71",
+                        "tertiary": "#79acff",
+                        "on-tertiary-container": "#002046",
+                        "on-surface-variant": "#ababab",
+                        "inverse-surface": "#f9f9f9",
+                        "on-primary-container": "#440044",
+                        "tertiary-fixed-dim": "#69a4ff",
+                        "surface": "#0e0e0e",
+                        "surface-container": "#191919",
+                        "secondary-dim": "#d28aee",
+                        "tertiary-fixed": "#83b1ff",
+                        "outline": "#757575",
+                        "surface-container-highest": "#262626",
+                        "on-error-container": "#ffb2b9",
+                        "on-tertiary-fixed-variant": "#003874",
+                        "secondary-fixed-dim": "#ebaeff",
+                        "surface-bright": "#2c2c2c",
+                        "on-primary-fixed-variant": "#540054"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"],
+                        "jura": ["Jura"]
+                    },
+                    "spacing": {
+                        "section-padding": "120px",
+                        "stack-sm": "16px",
+                        "base": "8px",
+                        "stack-md": "32px",
+                        "container-max": "1280px",
+                        "stack-lg": "64px",
+                        "gutter": "24px"
+                    },
+                    "fontSize": {
+                        "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-xl": ["60px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { 
+            font-family: 'Manrope', sans-serif; 
+            background-color: #000000;
+            color: #ffffff; 
+        }
+        .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .font-jura-bold { font-family: 'Jura', sans-serif; font-weight: 700; }
+        .font-jura { font-family: 'Jura', sans-serif; }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        h1, h2, h3, h4, .font-headline-lg, .font-display-xl, .font-headline-md {
+            font-family: 'Jura', sans-serif !important;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stat-card {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .chart-bar {
+            transition: width 1s ease-out;
+        }
+
+        /* Filtre noir et blanc pour toutes les images */
+        img {
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+        
+        img:hover {
+            filter: grayscale(80%);
+        }
+
+        /* Tech stack badges */
+        .tech-badge {
+            background: rgba(255,124,245,0.1);
+            border: 1px solid rgba(255,124,245,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-family: 'Jura', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-badge:hover {
+            background: rgba(255,124,245,0.2);
+            border-color: #ff7cf5;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body class="bg-black text-white selection:bg-primary/30 min-h-screen flex flex-col">
+
+    <!-- ========== NAVBAR (injectée via navbar.js) ========== -->
+    <div id="navbar-container"></div>
+    <script src="navbar.js"></script>
+    <!-- =================================================== -->
+
+    <main class="flex-grow mt-20">
+        <!-- Hero Section Ingénierie Logicielle -->
+        <section class="relative bg-zinc-950 text-white py-24 overflow-hidden">
+            <div class="absolute inset-0 opacity-20 pointer-events-none">
+                <div class="absolute inset-0 bg-gradient-to-br from-primary/40 to-transparent"></div>
+            </div>
+            <div class="relative max-w-[1280px] mx-auto px-8 grid md:grid-cols-2 items-center gap-16">
+                <div>
+                    <span class="font-label-bold text-secondary mb-4 block font-jura-bold">INGÉNIERIE LOGICIELLE</span>
+                    <h1 class="font-jura-bold text-white mb-6 text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">Des solutions <span class="text-primary">sur-mesure</span> pour votre transformation</h1>
+                    <p class="font-body-lg text-zinc-300 mb-10 max-w-xl">
+                        Nous concevons et développons des logiciels robustes, évolutifs et sécurisés, parfaitement alignés avec vos objectifs métier.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button class="bg-primary text-white px-8 py-4 font-label-bold rounded hover:brightness-110 transition-colors flex items-center gap-2 font-jura-bold">
+                            Demander un devis
+                            <span class="material-symbols-outlined text-base">code</span>
+                        </button>
+                        <button class="border border-white/20 text-white px-8 py-4 font-label-bold rounded hover:bg-white/10 transition-colors font-jura-bold">
+                            Voir nos réalisations
+                        </button>
+                    </div>
+                </div>
+                <div class="relative hidden md:block">
+                    <div class="aspect-square bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden shadow-2xl">
+                        <img class="w-full h-full object-cover" alt="Software engineering" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&h=600&fit=crop"/>
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 bg-primary p-8 rounded-lg shadow-xl">
+                        <div class="text-4xl font-black mb-1 font-jura-bold">100+</div>
+                        <div class="font-label-bold text-xs font-jura-bold">PROJETS LIVRÉS</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Chiffres clés -->
+        <section class="py-16 bg-black">
+            <div class="max-w-[1280px] mx-auto px-8">
+                <div class="text-center mb-12">
+                    <span class="text-secondary font-jura-bold text-sm uppercase tracking-wider">NOTRE IMPACT</span>
+                    <h2 class="font-jura-bold text-4xl md:text-5xl font-bold text-white mt-4">L'ingénierie logicielle en chiffres</h2>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="stat-card text-center p-6 bg-zinc-900/50 rounded-xl border border-zinc-800">
+                        <div class="text-4xl md:text-5xl font-jura-bold text-primary mb-2">100+</div>
+                        <div class="text-sm text-zinc-400 font-jura-bold">Projets livrés</div>
+                    </div>
+                    <div class="stat-card text-center p-6 bg-zinc-900/50 rounded-xl border border-zinc-800" style="animation-delay: 0.1s;">
+                        <div class="text-4xl md:text-5xl font-jura-bold text-primary mb-2">98%</div>
+                        <div class="text-sm text-zinc-400 font-jura-bold">Satisfaction client</div>
+                    </div>
+                    <div class="stat-card text-center p-6 bg-zinc-900/50 rounded-xl border border-zinc-800" style="animation-delay: 0.2s;">
+                        <div class="text-4xl md:text-5xl font-jura-bold text-primary mb-2">50+</div>
+                        <div class="text-sm text-zinc-400 font-jura-bold">Experts techniques</div>
+                    </div>
+                    <div class="stat-card text-center p-6 bg-zinc-900/50 rounded-xl border border-zinc-800" style="animation-delay: 0.3s;">
+                        <div class="text-4xl md:text-5xl font-jura-bold text-primary mb-2">24/7</div>
+                        <div class="text-sm text-zinc-400 font-jura-bold">Support & Maintenance</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bloc 1: Notre approche - Image à DROITE, Texte à GAUCHE -->
+        <section class="py-24 border-b border-zinc-800">
+            <div class="max-w-[1280px] mx-auto px-8 flex flex-col md:flex-row items-center gap-20">
+                <div class="md:w-1/2">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary text-2xl">settings_suggest</span>
+                        </div>
+                        <h2 class="font-jura-bold text-white text-3xl md:text-4xl font-bold">Notre approche technique</h2>
+                    </div>
+                    <p class="font-body-lg text-zinc-400 mb-8 leading-relaxed">
+                        Nous adoptons une méthodologie agile centrée sur la qualité, la performance et l'expérience utilisateur. Chaque projet est unique et mérite une attention particulière.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <span class="material-symbols-outlined text-primary mt-1">analytics</span>
+                            <div>
+                                <h4 class="font-jura-bold text-white mb-1">1. Analyse des besoins</h4>
+                                <p class="text-zinc-400">Compréhension approfondie de vos objectifs et contraintes techniques.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <span class="material-symbols-outlined text-primary mt-1">architecture</span>
+                            <div>
+                                <h4 class="font-jura-bold text-white mb-1">2. Conception & Architecture</h4>
+                                <p class="text-zinc-400">Définition d'une architecture robuste, scalable et maintenable.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <span class="material-symbols-outlined text-primary mt-1">rocket_launch</span>
+                            <div>
+                                <h4 class="font-jura-bold text-white mb-1">3. Développement & Déploiement</h4>
+                                <p class="text-zinc-400">Mise en œuvre agile et déploiement continu avec DevOps.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-zinc-900">
+                        <img class="w-full h-full object-cover" alt="Technical approach" src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=600&h=450&fit=crop"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bloc 2: Nos technologies - Image à GAUCHE, Texte à DROITE -->
+        <section class="py-24 border-b border-zinc-800">
+            <div class="max-w-[1280px] mx-auto px-8 flex flex-col md:flex-row items-center gap-20">
+                <div class="md:w-1/2">
+                    <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+                        <img class="w-full h-full object-cover" alt="Tech stack" src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=450&fit=crop"/>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary text-2xl">terminal</span>
+                        </div>
+                        <h2 class="font-jura-bold text-white text-3xl md:text-4xl font-bold">Notre stack technologique</h2>
+                    </div>
+                    <p class="font-body-lg text-zinc-400 mb-8 leading-relaxed">
+                        Nous utilisons les technologies les plus récentes pour garantir performance, sécurité et évolutivité.
+                    </p>
+                    <div class="flex flex-wrap gap-3 mb-8">
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Next.js</span>
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">Java</span>
+                        <span class="tech-badge">Spring Boot</span>
+                        <span class="tech-badge">Docker</span>
+                        <span class="tech-badge">Kubernetes</span>
+                        <span class="tech-badge">AWS</span>
+                        <span class="tech-badge">Azure</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">MongoDB</span>
+                        <span class="tech-badge">TensorFlow</span>
+                        <span class="tech-badge">GraphQL</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Nos services d'ingénierie -->
+        <section class="py-24 bg-zinc-950">
+            <div class="max-w-[1280px] mx-auto px-8">
+                <div class="text-center mb-12">
+                    <h2 class="font-jura-bold text-3xl md:text-4xl font-bold text-white">Nos services d'ingénierie logicielle</h2>
+                    <p class="text-zinc-400 mt-4 max-w-2xl mx-auto">Des solutions complètes pour tous vos besoins logiciels</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-black rounded-2xl p-6 border border-zinc-800 text-center">
+                        <div class="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
+                            <span class="material-symbols-outlined text-primary text-3xl">web</span>
+                        </div>
+                        <h3 class="font-jura-bold text-white text-xl mb-3">Applications Web</h3>
+                        <p class="text-zinc-400 text-sm">Sites web responsives, PWA, SPAs et applications web complexes sur-mesure.</p>
+                    </div>
+                    
+                    <div class="bg-black rounded-2xl p-6 border border-zinc-800 text-center">
+                        <div class="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
+                            <span class="material-symbols-outlined text-primary text-3xl">phone_android</span>
+                        </div>
+                        <h3 class="font-jura-bold text-white text-xl mb-3">Applications Mobiles</h3>
+                        <p class="text-zinc-400 text-sm">Développement natif iOS (Swift) et Android (Kotlin) ou cross-platform (React Native, Flutter).</p>
+                    </div>
+                    
+                    <div class="bg-black rounded-2xl p-6 border border-zinc-800 text-center">
+                        <div class="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
+                            <span class="material-symbols-outlined text-primary text-3xl">cloud</span>
+                        </div>
+                        <h3 class="font-jura-bold text-white text-xl mb-3">Solutions Cloud</h3>
+                        <p class="text-zinc-400 text-sm">Migration cloud, architecture serverless, microservices et DevOps.</p>
+                    </div>
+                    
+                    <div class="bg-black rounded-2xl p-6 border border-zinc-800 text-center">
+                        <div class="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
+                            <span class="material-symbols-outlined text-primary text-3xl">database</span>
+                        </div>
+                        <h3 class="font-jura-bold text-white text-xl mb-3">API & Intégrations</h3>
+                        <p class="text-zinc-400 text-sm">Développement d'API RESTful/GraphQL et intégration de systèmes tiers.</p>
+                    </div>
+                    
+                    <div class="bg-black rounded-2xl p-6 border border-zinc-800 text-center">
+                        <div class="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
+                            <span class="material-symbols-outlined text-primary text-3xl">psychology</span>
+                        </div>
+                        <h3 class="font-jura-bold text-white text-xl mb-3">IA & Machine Learning</h3>
+                        <p class="text-zinc-400 text-sm">Modèles prédictifs, NLP, vision par ordinateur et systèmes de recommandation.</p>
+                    </div>
+                    
+                    <div class="bg-black rounded-2xl p-6 border border-zinc-800 text-center">
+                        <div class="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
+                            <span class="material-symbols-outlined text-primary text-3xl">security</span>
+                        </div>
+                        <h3 class="font-jura-bold text-white text-xl mb-3">Sécurité & Audit</h3>
+                        <p class="text-zinc-400 text-sm">Tests de pénétration, audit de code et mise en conformité RGPD.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Barres de compétences techniques -->
+        <section class="py-24">
+            <div class="max-w-[1280px] mx-auto px-8 grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="font-jura-bold text-3xl md:text-4xl font-bold text-white mb-6">Nos expertises techniques</h2>
+                    <p class="text-zinc-400 mb-8">Des compétences pointues pour des solutions d'excellence</p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-jura-bold text-white">Développement Full-Stack</span>
+                                <span class="text-primary">95%</span>
+                            </div>
+                            <div class="h-2 bg-zinc-800 rounded-full overflow-hidden">
+                                <div class="chart-bar h-full bg-primary rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-jura-bold text-white">Architecture Cloud</span>
+                                <span class="text-primary">92%</span>
+                            </div>
+                            <div class="h-2 bg-zinc-800 rounded-full overflow-hidden">
+                                <div class="chart-bar h-full bg-primary rounded-full" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-jura-bold text-white">DevOps & CI/CD</span>
+                                <span class="text-primary">88%</span>
+                            </div>
+                            <div class="h-2 bg-zinc-800 rounded-full overflow-hidden">
+                                <div class="chart-bar h-full bg-primary rounded-full" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-jura-bold text-white">Base de données & Big Data</span>
+                                <span class="text-primary">85%</span>
+                            </div>
+                            <div class="h-2 bg-zinc-800 rounded-full overflow-hidden">
+                                <div class="chart-bar h-full bg-primary rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-zinc-900 rounded-2xl p-8 border border-zinc-800">
+                    <h3 class="font-jura-bold text-2xl text-white mb-6">Méthodologie Agile</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary">sprint</span>
+                            </div>
+                            <div>
+                                <h4 class="font-jura-bold text-white">Scrum & Kanban</h4>
+                                <p class="text-sm text-zinc-400">Itérations courtes et livraisons continues</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary">devices</span>
+                            </div>
+                            <div>
+                                <h4 class="font-jura-bold text-white">TDD & BDD</h4>
+                                <p class="text-sm text-zinc-400">Tests automatisés pour une qualité garantie</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary">groups</span>
+                            </div>
+                            <div>
+                                <h4 class="font-jura-bold text-white">Pair Programming</h4>
+                                <p class="text-sm text-zinc-400">Code review et partage de connaissances</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary">monitoring</span>
+                            </div>
+                            <div>
+                                <h4 class="font-jura-bold text-white">Monitoring & Observability</h4>
+                                <p class="text-sm text-zinc-400">Supervision continue des applications</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Cas client / Success story -->
+        <section class="py-24 bg-zinc-950">
+            <div class="max-w-[1280px] mx-auto px-8">
+                <div class="text-center mb-12">
+                    <span class="text-secondary font-jura-bold text-sm uppercase tracking-wider">RÉALISATIONS</span>
+                    <h2 class="font-jura-bold text-3xl md:text-4xl font-bold text-white mt-4">Ils nous ont choisis</h2>
+                    <p class="text-zinc-400 mt-4 max-w-2xl mx-auto">Des projets ambitieux menés à bien avec succès</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-black rounded-xl p-6 border border-zinc-800">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary">shopping_cart</span>
+                            </div>
+                            <div>
+                                <h4 class="font-jura-bold text-white">E-Commerce Plus</h4>
+                                <p class="text-xs text-zinc-500">Plateforme B2B/B2C</p>
+                            </div>
+                        </div>
+                        <p class="text-zinc-400 text-sm mb-4">"AXIOM a développé notre plateforme e-commerce capable de supporter 500k requêtes/jour avec un uptime de 99.99%."</p>
+                        <div class="text-primary font-jura-bold text-lg">+300% de ventes</div>
+                    </div>
+                    
+                    <div class="bg-black rounded-xl p-6 border border-zinc-800">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary">health_and_safety</span>
+                            </div>
+                            <div>
+                                <h4 class="font-jura-bold text-white">MediTrack</h4>
+                                <p class="text-xs text-zinc-500">Solution de télémédecine</p>
+                            </div>
+                        </div>
+                        <p class="text-zinc-400 text-sm mb-4">"L'application de télémédecine développée par AXIOM a permis de traiter plus de 50k patients en 6 mois."</p>
+                        <div class="text-primary font-jura-bold text-lg">50k+ patients</div>
+                    </div>
+                    
+                    <div class="bg-black rounded-xl p-6 border border-zinc-800">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary">analytics</span>
+                            </div>
+                            <div>
+                                <h4 class="font-jura-bold text-white">DataViz Pro</h4>
+                                <p class="text-xs text-zinc-500">Plateforme analytics</p>
+                            </div>
+                        </div>
+                        <p class="text-zinc-400 text-sm mb-4">"La plateforme d'analyse data en temps réel a permis à nos clients de prendre des décisions 3x plus rapides."</p>
+                        <div class="text-primary font-jura-bold text-lg">+200% d'efficacité</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       
+<!-- CTA Section -->
+<style>
+    .cta-grid-animation {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    /* Conteneur de la grille animée */
+    .grid-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.4;
+    }
+    
+    /* Lignes horizontales noires */
+    .grid-line-h-dark {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(0,0,0,0.6), rgba(0,0,0,0.9), rgba(0,0,0,0.6), transparent);
+        animation: scanHorizontalDark 4s linear infinite;
+    }
+    .grid-line-h-dark:nth-child(1) { top: 15%; animation-delay: 0s; }
+    .grid-line-h-dark:nth-child(2) { top: 30%; animation-delay: 0.8s; }
+    .grid-line-h-dark:nth-child(3) { top: 45%; animation-delay: 1.6s; }
+    .grid-line-h-dark:nth-child(4) { top: 60%; animation-delay: 2.4s; }
+    .grid-line-h-dark:nth-child(5) { top: 75%; animation-delay: 3.2s; }
+    .grid-line-h-dark:nth-child(6) { top: 90%; animation-delay: 4s; }
+    
+    /* Lignes verticales noires - RENFORCÉES */
+    .grid-line-v-dark {
+        position: absolute;
+        top: 0;
+        width: 1.5px;
+        height: 100%;
+        background: linear-gradient(180deg, transparent, rgba(0,0,0,0.6), rgba(0,0,0,0.9), rgba(0,0,0,0.6), transparent);
+        animation: scanVerticalDark 4s linear infinite;
+    }
+    .grid-line-v-dark:nth-child(7) { left: 8%; animation-delay: 0s; }
+    .grid-line-v-dark:nth-child(8) { left: 16%; animation-delay: 0.4s; }
+    .grid-line-v-dark:nth-child(9) { left: 24%; animation-delay: 0.8s; }
+    .grid-line-v-dark:nth-child(10) { left: 32%; animation-delay: 1.2s; }
+    .grid-line-v-dark:nth-child(11) { left: 40%; animation-delay: 1.6s; }
+    .grid-line-v-dark:nth-child(12) { left: 48%; animation-delay: 2.0s; }
+    .grid-line-v-dark:nth-child(13) { left: 56%; animation-delay: 2.4s; }
+    .grid-line-v-dark:nth-child(14) { left: 64%; animation-delay: 2.8s; }
+    .grid-line-v-dark:nth-child(15) { left: 72%; animation-delay: 3.2s; }
+    .grid-line-v-dark:nth-child(16) { left: 80%; animation-delay: 3.6s; }
+    .grid-line-v-dark:nth-child(17) { left: 88%; animation-delay: 4.0s; }
+    .grid-line-v-dark:nth-child(18) { left: 96%; animation-delay: 4.4s; }
+    
+    @keyframes scanHorizontalDark {
+        0% { transform: translateX(-100%); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateX(100%); opacity: 0; }
+    }
+    
+    @keyframes scanVerticalDark {
+        0% { transform: translateY(-100%); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(100%); opacity: 0; }
+    }
+    
+    /* Point lumineux au croisement */
+    .grid-glow-dark {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        background: #000000;
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(0,0,0,0.8);
+        opacity: 0;
+        animation: crossGlowDark 4s linear infinite;
+    }
+    .grid-glow-dark:nth-child(19) { top: 15%; left: 8%; animation-delay: 0s; }
+    .grid-glow-dark:nth-child(20) { top: 15%; left: 40%; animation-delay: 0.4s; }
+    .grid-glow-dark:nth-child(21) { top: 15%; left: 72%; animation-delay: 0.8s; }
+    .grid-glow-dark:nth-child(22) { top: 30%; left: 24%; animation-delay: 1.2s; }
+    .grid-glow-dark:nth-child(23) { top: 30%; left: 56%; animation-delay: 1.6s; }
+    .grid-glow-dark:nth-child(24) { top: 30%; left: 88%; animation-delay: 2.0s; }
+    .grid-glow-dark:nth-child(25) { top: 45%; left: 8%; animation-delay: 2.4s; }
+    .grid-glow-dark:nth-child(26) { top: 45%; left: 48%; animation-delay: 2.8s; }
+    .grid-glow-dark:nth-child(27) { top: 45%; left: 80%; animation-delay: 3.2s; }
+    .grid-glow-dark:nth-child(28) { top: 60%; left: 16%; animation-delay: 3.6s; }
+    .grid-glow-dark:nth-child(29) { top: 60%; left: 64%; animation-delay: 4.0s; }
+    .grid-glow-dark:nth-child(30) { top: 60%; left: 96%; animation-delay: 4.4s; }
+    .grid-glow-dark:nth-child(31) { top: 75%; left: 32%; animation-delay: 0s; }
+    .grid-glow-dark:nth-child(32) { top: 75%; left: 72%; animation-delay: 0.4s; }
+    .grid-glow-dark:nth-child(33) { top: 90%; left: 8%; animation-delay: 0.8s; }
+    .grid-glow-dark:nth-child(34) { top: 90%; left: 48%; animation-delay: 1.2s; }
+    .grid-glow-dark:nth-child(35) { top: 90%; left: 88%; animation-delay: 1.6s; }
+    .grid-glow-dark:nth-child(36) { top: 90%; left: 24%; animation-delay: 2.0s; }
+    .grid-glow-dark:nth-child(37) { top: 90%; left: 64%; animation-delay: 2.4s; }
+    
+    @keyframes crossGlowDark {
+        0%, 100% { opacity: 0; transform: scale(1); }
+        45% { opacity: 0; transform: scale(1); }
+        50% { opacity: 0.9; transform: scale(3); }
+        55% { opacity: 0; transform: scale(1); }
+    }
+    
+    /* Contenu au-dessus */
+    .cta-content {
+        position: relative;
+        z-index: 10;
+    }
+</style>
+
+<section class="py-[120px] bg-primary text-black text-center cta-grid-animation">
+    <div class="grid-overlay">
+        <div class="grid-line-h-dark"></div>
+        <div class="grid-line-h-dark"></div>
+        <div class="grid-line-h-dark"></div>
+        <div class="grid-line-h-dark"></div>
+        <div class="grid-line-h-dark"></div>
+        <div class="grid-line-h-dark"></div>
+        
+        <div class="grid-line-v-dark"></div>
+        <div class="grid-line-v-dark"></div>
+        <div class="grid-line-v-dark"></div>
+        <div class="grid-line-v-dark"></div>
+        <div class="grid-line-v-dark"></div>
+        <div class="grid-line-v-dark"></div>
+        <div class="grid-line-v-dark"></div>
+        <div class="grid-line-v-dark"></div>
+        <div class="grid-line-v-dark"></div>
+        <div class="grid-line-v-dark"></div>
+        <div class="grid-line-v-dark"></div>
+        <div class="grid-line-v-dark"></div>
+        
+        <div class="grid-glow-dark"></div>
+        <div class="grid-glow-dark"></div>
+        <div class="grid-glow-dark"></div>
+        <div class="grid-glow-dark"></div>
+        <div class="grid-glow-dark"></div>
+        <div class="grid-glow-dark"></div>
+        <div class="grid-glow-dark"></div>
+        <div class="grid-glow-dark"></div>
+        <div class="grid-glow-dark"></div>
+        <div class="grid-glow-dark"></div>
+        <div class="grid-glow-dark"></div>
+        <div class="grid-glow-dark"></div>
+        <div class="grid-glow-dark"></div>
+        <div class="grid-glow-dark"></div>
+        <div class="grid-glow-dark"></div>
+        <div class="grid-glow-dark"></div>
+        <div class="grid-glow-dark"></div>
+        <div class="grid-glow-dark"></div>
+        <div class="grid-glow-dark"></div>
+    </div>
+    
+    <div class="cta-content max-w-3xl mx-auto px-8">
+        <h2 class="font-jura-bold mb-6 text-3xl md:text-4xl lg:text-5xl font-bold">Prêt à concrétiser votre projet logiciel ?</h2>
+        <p class="font-body-lg mb-10 opacity-90">
+            Discutons de vos besoins et construisons ensemble la solution idéale pour votre entreprise.
+        </p>
+        <button class="bg-black text-primary px-10 py-5 font-label-bold rounded shadow-lg hover:bg-zinc-800 transition-colors uppercase tracking-widest font-jura-bold">
+            Parler à un expert
+        </button>
+    </div>
+</section>
+
+        
+    <!-- Footer AXIOM -->
+    <footer class="bg-black border-t border-zinc-800 w-full py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex flex-col items-center md:items-start gap-4">
+                <span class="text-xl font-black text-white font-jura-bold">AXIOM</span>
+                <p class="font-body text-sm tracking-wide text-zinc-500 font-jura-bold">© 2024 AXIOM. Strategic IT Consulting &amp; Auditing.</p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-8">
+                <a class="font-jura-bold text-sm tracking-wide text-zinc-500 hover:text-primary transition-colors duration-200" href="#">Expertise</a>
+                <a class="font-jura-bold text-sm tracking-wide text-zinc-500 hover:text-primary transition-colors duration-200" href="#">Insights</a>
+                <a class="font-jura-bold text-sm tracking-wide text-zinc-500 hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
+                <a class="font-jura-bold text-sm tracking-wide text-zinc-500 hover:text-primary transition-colors duration-200" href="#">Terms of Service</a>
+            </div>
+            
+            <div class="flex gap-4">
+                <div class="w-10 h-10 rounded-full border border-zinc-800 flex items-center justify-center text-zinc-500 hover:text-primary hover:border-primary transition-all cursor-pointer">
+                    <span class="material-symbols-outlined text-xl">share</span>
+                </div>
+                <div class="w-10 h-10 rounded-full border border-zinc-800 flex items-center justify-center text-zinc-500 hover:text-primary hover:border-primary transition-all cursor-pointer">
+                    <span class="material-symbols-outlined text-xl">language</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation des barres de compétences au scroll
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: "0px 0px -100px 0px"
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bars = entry.target.querySelectorAll('.chart-bar');
+                    bars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0%';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        const chartSection = document.querySelector('.chart-bar')?.closest('.grid');
+        if (chartSection) observer.observe(chartSection);
+    </script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+<head>
+    <link rel="stylesheet" href="style.css">  
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="AXIOM - IT Conseil, Audit & Stratégie" name="description"/>
+    <title>AXIOM | IT Conseil, Audit & Stratégie</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=Jura:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#ff7cf5",
+                        "primary-fixed": "#ff5af9",
+                        "secondary-container": "#6a2785",
+                        "inverse-on-surface": "#555555",
+                        "on-secondary-container": "#f0bfff",
+                        "background": "#0e0e0e",
+                        "primary-dim": "#ff51fa",
+                        "surface-container-high": "#1f1f1f",
+                        "primary-container": "#ff5af9",
+                        "tertiary-container": "#609efd",
+                        "on-secondary": "#530c6f",
+                        "secondary-fixed": "#f1c1ff",
+                        "surface-variant": "#262626",
+                        "on-error": "#490013",
+                        "inverse-primary": "#aa00aa",
+                        "on-background": "#ffffff",
+                        "tertiary-dim": "#609efd",
+                        "secondary": "#e197fc",
+                        "primary-fixed-dim": "#fb2ef9",
+                        "surface-dim": "#0e0e0e",
+                        "outline-variant": "#484848",
+                        "error-container": "#a70138",
+                        "on-tertiary-fixed": "#001737",
+                        "on-primary-fixed": "#000000",
+                        "error-dim": "#d73357",
+                        "surface-container-low": "#131313",
+                        "error": "#ff6e84",
+                        "primary": "#ff7cf5",
+                        "surface-container-lowest": "#000000",
+                        "on-tertiary": "#002c5c",
+                        "on-primary": "#580058",
+                        "on-surface": "#ffffff",
+                        "on-secondary-fixed-variant": "#753390",
+                        "on-secondary-fixed": "#550e71",
+                        "tertiary": "#79acff",
+                        "on-tertiary-container": "#002046",
+                        "on-surface-variant": "#ababab",
+                        "inverse-surface": "#f9f9f9",
+                        "on-primary-container": "#440044",
+                        "tertiary-fixed-dim": "#69a4ff",
+                        "surface": "#0e0e0e",
+                        "surface-container": "#191919",
+                        "secondary-dim": "#d28aee",
+                        "tertiary-fixed": "#83b1ff",
+                        "outline": "#757575",
+                        "surface-container-highest": "#262626",
+                        "on-error-container": "#ffb2b9",
+                        "on-tertiary-fixed-variant": "#003874",
+                        "secondary-fixed-dim": "#ebaeff",
+                        "surface-bright": "#2c2c2c",
+                        "on-primary-fixed-variant": "#540054"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"],
+                        "jura": ["Jura"]
+                    },
+                    "spacing": {
+                        "section-padding": "120px",
+                        "stack-sm": "16px",
+                        "base": "8px",
+                        "stack-md": "32px",
+                        "container-max": "1280px",
+                        "stack-lg": "64px",
+                        "gutter": "24px"
+                    },
+                    "fontSize": {
+                        "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-xl": ["60px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { 
+            font-family: 'Manrope', sans-serif; 
+            background-color: #000000;
+            color: #ffffff; 
+        }
+        .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .font-jura-bold { font-family: 'Jura', sans-serif; font-weight: 700; }
+        .font-jura { font-family: 'Jura', sans-serif; }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Titres en Jura */
+        h1, h2, h3, h4, .font-headline-lg, .font-display-xl, .font-headline-md {
+            font-family: 'Jura', sans-serif !important;
+        }
+    </style>
+</head>
+
+<body class="bg-black text-white selection:bg-primary/30 min-h-screen flex flex-col">
+
+    <!-- ========== NAVBAR (injectée via navbar.js) ========== -->
+    <div id="navbar-container"></div>
+    <script src="navbar.js"></script>
+    <!-- =================================================== -->
+
+    <main class="flex-grow mt-20">
+        <!-- Hero Section -->
+        <section class="relative bg-zinc-950 text-white py-24 overflow-hidden">
+            <div class="absolute inset-0 opacity-20 pointer-events-none">
+                <div class="absolute inset-0 bg-gradient-to-br from-primary/40 to-transparent"></div>
+            </div>
+            <div class="relative max-w-[1280px] mx-auto px-8 grid md:grid-cols-2 items-center gap-16">
+                <div>
+                    <span class="font-label-bold text-secondary mb-4 block font-jura-bold">EXPERTISE &amp; STRATÉGIE</span>
+                    <h1 class="font-jura-bold text-white mb-6 text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">IT Conseil, Audit &amp; Stratégie</h1>
+                    <p class="font-body-lg text-zinc-300 mb-10 max-w-xl">
+                        Nous accompagnons les organisations dans leur transformation numérique à travers des diagnostics précis et des stratégies technologiques alignées sur leurs objectifs métiers.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button class="bg-primary text-white px-8 py-4 font-label-bold rounded hover:brightness-110 transition-colors flex items-center gap-2 font-jura-bold">
+                            Prendre un Rendez-vous
+                            <span class="material-symbols-outlined text-base">calendar_today</span>
+                        </button>
+                        <button class="border border-white/20 text-white px-8 py-4 font-label-bold rounded hover:bg-white/10 transition-colors font-jura-bold">
+                            Découvrir nos services
+                        </button>
+                    </div>
+                </div>
+                <div class="relative hidden md:block">
+                    <div class="aspect-square bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden shadow-2xl">
+                        <img class="w-full h-full object-cover grayscale contrast-125" alt="Professional meeting" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=600&fit=crop"/>
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 bg-primary p-8 rounded-lg shadow-xl">
+                        <div class="text-4xl font-black mb-1 font-jura-bold">15+</div>
+                        <div class="font-label-bold text-xs font-jura-bold">ANNÉES D'EXPERTISE</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bloc 1: Conseil - Image à DROITE, Texte à GAUCHE -->
+        <section class="py-24 border-b border-zinc-800">
+            <div class="max-w-[1280px] mx-auto px-8 flex flex-col md:flex-row items-center gap-20">
+                <div class="md:w-1/2">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary text-2xl">trending_up</span>
+                        </div>
+                        <h2 class="font-jura-bold text-white text-3xl md:text-4xl font-bold">Conseil et accompagnement autour des projets de transformation IT</h2>
+                    </div>
+                    <p class="font-body-lg text-zinc-400 mb-8 leading-relaxed">
+                        Nos consultants débutent chaque projet par une analyse approfondie de vos besoins spécifiques, prenant en compte vos objectifs commerciaux et vos contraintes technologiques.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <span class="material-symbols-outlined text-primary mt-1" style="font-variation-settings: 'FILL' 1;">circle</span>
+                            <p class="text-zinc-400">Diagnostics technologiques pointus et recommandations stratégiques personnalisées.</p>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <span class="material-symbols-outlined text-primary mt-1" style="font-variation-settings: 'FILL' 1;">circle</span>
+                            <p class="text-zinc-400">Alignement de votre infrastructure avec les meilleures pratiques du marché.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl bg-zinc-900">
+                        <img class="w-full h-full object-cover opacity-80" alt="IT transformation" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=450&fit=crop"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bloc 2: Transformation Digitale - Image à GAUCHE, Texte à DROITE -->
+        <section class="py-24">
+            <div class="max-w-[1280px] mx-auto px-8 flex flex-col md:flex-row items-center gap-20">
+                <div class="md:w-1/2">
+                    <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+                        <img class="w-full h-full object-cover" alt="Team collaboration" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=450&fit=crop"/>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary text-2xl">hub</span>
+                        </div>
+                        <h2 class="font-jura-bold text-white text-3xl md:text-4xl font-bold">Transformation Digitale &amp; Accompagnement</h2>
+                    </div>
+                    <p class="font-body-lg text-zinc-400 mb-8 leading-relaxed">
+                        L'accompagnement à la transformation digitale est un processus global qui vise à intégrer les technologies numériques dans l'ensemble des activités de l'entreprise.
+                    </p>
+                    <div class="grid gap-6">
+                        <div class="p-6 bg-zinc-900 border-l-4 border-primary rounded-r-xl shadow-sm hover:shadow-md transition-shadow">
+                            <h4 class="font-label-bold text-white mb-2 uppercase tracking-wider text-xs font-jura-bold">Analyse des besoins</h4>
+                            <p class="text-sm text-zinc-400">Audit complet de l'infrastructure existante et identification des opportunités d'amélioration.</p>
+                        </div>
+                        <div class="p-6 bg-zinc-900 border-l-4 border-primary rounded-r-xl shadow-sm hover:shadow-md transition-shadow">
+                            <h4 class="font-label-bold text-white mb-2 uppercase tracking-wider text-xs font-jura-bold">Mise en œuvre agile</h4>
+                            <p class="text-sm text-zinc-400">Déploiement sécurisé des nouvelles technologies avec un accompagnement au changement soutenu.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Master Plan Section -->
+        <section class="py-[120px] bg-zinc-950 text-white">
+            <div class="max-w-[1280px] mx-auto px-8">
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div class="order-2 md:order-1">
+                        <div class="aspect-video bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 shadow-2xl">
+                            <img class="w-full h-full object-cover grayscale brightness-75" alt="Digital transformation concept" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=450&fit=crop"/>
+                        </div>
+                    </div>
+                    <div class="order-1 md:order-2">
+                        <span class="font-label-bold text-secondary mb-2 block uppercase tracking-widest font-jura-bold">STRATÉGIE À LONG TERME</span>
+                        <h2 class="font-jura-bold text-white mb-6 text-3xl md:text-4xl lg:text-5xl font-bold">Le Schéma Directeur IT</h2>
+                        <p class="font-body-md text-zinc-400 mb-8 leading-relaxed">
+                            Le schéma directeur informatique définit les orientations stratégiques du système d'information à moyen et long terme. C'est la pierre angulaire de votre résilience technologique.
+                        </p>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3 font-label-bold text-zinc-200 font-jura-bold">
+                                <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Alignement stratégique SI/Métier
+                            </li>
+                            <li class="flex items-center gap-3 font-label-bold text-zinc-200 font-jura-bold">
+                                <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Urbanisation des systèmes d'information
+                            </li>
+                            <li class="flex items-center gap-3 font-label-bold text-zinc-200 font-jura-bold">
+                                <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                Gouvernance et sécurité des données
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-[120px] bg-primary text-black text-center">
+            <div class="max-w-3xl mx-auto px-8">
+                <h2 class="font-jura-bold mb-6 text-3xl md:text-4xl lg:text-5xl font-bold">Prêt à optimiser votre infrastructure ?</h2>
+                <p class="font-body-lg mb-10 opacity-90">
+                    Nos experts sont à votre disposition pour un audit initial gratuit de votre environnement IT.
+                </p>
+                <button class="bg-black text-primary px-10 py-5 font-label-bold rounded shadow-lg hover:bg-zinc-800 transition-colors uppercase tracking-widest font-jura-bold">
+                    Contacter un expert AXIOM
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer AXIOM -->
+    <footer class="bg-black border-t border-zinc-800 w-full py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex flex-col items-center md:items-start gap-4">
+                <span class="text-xl font-black text-white font-jura-bold">AXIOM</span>
+                <p class="font-body text-sm tracking-wide text-zinc-500 font-jura-bold">© 2024 AXIOM. Strategic IT Consulting &amp; Auditing.</p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-8">
+                <a class="font-jura-bold text-sm tracking-wide text-zinc-500 hover:text-primary transition-colors duration-200" href="#">Expertise</a>
+                <a class="font-jura-bold text-sm tracking-wide text-zinc-500 hover:text-primary transition-colors duration-200" href="#">Insights</a>
+                <a class="font-jura-bold text-sm tracking-wide text-zinc-500 hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
+                <a class="font-jura-bold text-sm tracking-wide text-zinc-500 hover:text-primary transition-colors duration-200" href="#">Terms of Service</a>
+            </div>
+            
+            <div class="flex gap-4">
+                <div class="w-10 h-10 rounded-full border border-zinc-800 flex items-center justify-center text-zinc-500 hover:text-primary hover:border-primary transition-all cursor-pointer">
+                    <span class="material-symbols-outlined text-xl">share</span>
+                </div>
+                <div class="w-10 h-10 rounded-full border border-zinc-800 flex items-center justify-center text-zinc-500 hover:text-primary hover:border-primary transition-all cursor-pointer">
+                    <span class="material-symbols-outlined text-xl">language</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
