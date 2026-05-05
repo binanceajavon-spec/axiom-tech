@@ -1,0 +1,243 @@
+/* ============================================
+   HERO MOBILE — VERSION PRO
+   ============================================ */
+
+@media (max-width: 768px) {
+
+    /* Section hero — plein écran, texte en bas */
+    .relative.min-h-screen.flex.items-center.justify-center.pt-20 {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        padding-top: 50px !important; /* UNITÉ AJOUTÉE */
+        min-height: 100svh !important;
+        overflow-x: hidden !important; /* ÉVITE DÉBORDEMENT */
+    }
+
+    /* Vidéo — fond absolu plein écran,
+       commence SOUS la navbar (52px) */
+    .relative.min-h-screen.flex.items-center.justify-center.pt-20 > .absolute.inset-0 {
+        position: absolute !important;
+        top: -290px !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: auto !important;
+    }
+
+    /* Vidéo elle-même */
+    .relative.min-h-screen.flex.items-center.justify-center.pt-20 video {
+        width: 80% !important;
+        height: 30% !important;
+        object-fit: cover !important;
+        object-position: center top !important;
+        opacity: 0.85 !important;
+        transform: none !important;
+        position: relative !important;
+    }
+
+    /* Bloc texte — collé en bas avec padding généreux */
+    .relative.min-h-screen.flex.items-center.justify-center.pt-20 > .relative.z-10 {
+        position: relative !important;
+        width: 100% !important;
+        padding: 0 0.75rem 8.75rem !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    /* H1 — dominant, lisible */
+    .relative.min-h-screen.flex.items-center.justify-center.pt-20 h1 {
+        font-size: clamp(2.5rem, 8vw, 2.6rem) !important;
+        line-height: 1.12 !important;
+        letter-spacing: -0.025em !important;
+        white-space: normal !important;
+        margin-bottom: 0.4rem !important;
+        text-align: center !important;
+    }
+
+    /* H2 — sous-titre secondaire, bien proportionné */
+    .relative.min-h-screen.flex.items-center.justify-center.pt-20 h2 {
+        font-size: clamp(0.95rem, 3.8vw, 1.15rem) !important;
+        font-weight: 500 !important;
+        line-height: 1.45 !important;
+        letter-spacing: 0em !important;
+        margin-bottom: 0.75rem !important;
+        text-align: center !important;
+        opacity: 0.85 !important;
+    }
+
+    /* Paragraphe description */
+    .relative.min-h-screen.flex.items-center.justify-center.pt-20 p {
+        font-size: clamp(0.98rem, 3vw, 0.88rem) !important;
+        line-height: 1.65 !important;
+        color: rgba(255, 255, 255, 0.45) !important;
+        max-width: 30ch !important;
+        margin: 0 auto 1.6rem auto !important;
+        text-align: center !important;
+    }
+
+    /* Bouton CTA — refonte pro */
+    .cta-button {
+        flex-direction: row !important;
+        padding: 0 !important;
+        margin: 0 auto !important;
+        border-radius: 0 !important;
+        background: #ffffff !important;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15) !important;
+        transition: box-shadow 0.3s ease, transform 0.2s ease !important;
+    }
+
+    .cta-button:active {
+        transform: scale(0.97) !important;
+    }
+
+    /* Texte du bouton */
+    .cta-button span:first-child {
+        padding: 10px 20px !important;
+        font-size: 0.8rem !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.07em !important;
+        text-transform: uppercase !important;
+        color: #000000 !important;
+        text-align: center !important;
+        flex: 1 !important;
+        white-space: nowrap !important;
+    }
+
+    /* Icône du bouton */
+    .cta-button-icon {
+        width: 40px !important;
+        height: 40px !important;
+        min-width: 40px !important;
+        min-height: 40px !important;
+        background: #a86fa3 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-shrink: 0 !important;
+    }
+
+    .cta-button-icon .material-symbols-outlined {
+        font-size: 16px !important;
+        color: #000 !important;
+    }
+}
+
+/* TRÈS PETITS ÉCRANS (jusqu'à 390px) */
+@media (max-width: 390px) {
+    .relative.min-h-screen.flex.items-center.justify-center.pt-20 h1 {
+        font-size: 2.0rem !important;
+    }
+
+    .relative.min-h-screen.flex.items-center.justify-center.pt-20 h2 {
+        font-size: 1.0rem !important;
+    }
+}
+
+/* PETITS ÉCRANS (ajustement bas sans débordement) */
+@media (max-width: 768px) {
+    .relative.min-h-screen.flex.items-center.justify-center.pt-20 > .relative.z-10 {
+        margin-top: auto !important;
+        margin-bottom: 40px !important;
+        padding-bottom: 20px !important;
+    }
+
+    /* Empêche tout débordement horizontal */
+    body,
+    html {
+        overflow-x: hidden !important;
+        width: 100% !important;
+    }
+
+    .relative.min-h-screen.flex.items-center.justify-center.pt-20 {
+        overflow-x: hidden !important;
+    }
+}
+
+/* TRÈS PETITS ÉCRANS (480px et moins) */
+@media (max-width: 480px) {
+    .relative.min-h-screen.flex.items-center.justify-center.pt-20 > .relative.z-10 {
+        margin-bottom: 85px !important;
+        padding: 0 1rem 20px !important;
+    }
+}
+
+/* ============================================
+   POSITION TEXTE + BOUTON
+   UNIQUEMENT GRANDS MOBILES (376px → 768px)
+   ============================================ */
+
+@media (min-width: 376px) and (max-width: 768px) {
+    .relative.min-h-screen.flex.items-center.justify-center.pt-20 > .relative.z-10 {
+        transform: translateY(-15px) !important;
+        transition: transform 0.2s ease !important;
+    }
+}
+
+
+/* ============================================
+   COULEURS DU TEXTE HERO (Desktop + Mobile)
+   ============================================ */
+
+/* --- Desktop par défaut (min-width: 769px) --- */
+@media (min-width: 769px) {
+    /* Titre principal H1 (Réinventez votre Entreprise) */
+    .relative.min-h-screen h1 {
+        color: #ffffff !important;      /* Blanc par défaut */
+    }
+    .relative.min-h-screen h1 .text-secondary {
+        color: #c470e2 !important;       /* Violet clair pour "Entreprise" */
+    }
+
+    /* Sous-titre H2 (Accélérez votre transformation) */
+    .relative.min-h-screen h2 {
+        color: #ffffff !important;
+    }
+    .relative.min-h-screen h2 .text-primary {
+        color: #c470e2 !important;       /* Rose/violet pour "Accélérez" */
+    }
+
+    /* Paragraphe description */
+    .relative.min-h-screen .font-body {
+        color: rgba(255, 255, 255, 0.7) !important;
+    }
+}
+
+/* --- Mobile (max-width: 768px) --- */
+@media (max-width: 768px) {
+    /* Titre principal H1 */
+    .relative.min-h-screen h1 {
+        color: #ffffff !important;
+    }
+    .relative.min-h-screen h1 .text-secondary {
+        color: #c470e2 !important;
+    }
+
+    /* Sous-titre H2 */
+    .relative.min-h-screen h2 {
+        color: #ffffff !important;
+    }
+    .relative.min-h-screen h2 .text-primary {
+        color:#c470e2  !important;
+    }
+
+    /* Paragraphe description */
+    .relative.min-h-screen .font-body {
+        color: rgba(255, 255, 255, 0.6) !important;
+    }
+}
+
+/* --- Bouton CTA (couleurs globales) --- */
+.cta-button span:first-child {
+    color: #000000 !important;   /* Texte du bouton en noir */
+}
+.cta-button-icon {
+    background: #c470e2!important;  /* Fond icône */
+}
+.cta-button-icon .material-symbols-outlined {
+    color: #000000 !important;   /* Icône noire */
+}
