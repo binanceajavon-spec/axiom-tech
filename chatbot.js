@@ -1,6 +1,6 @@
 // ============================================================
 //  AXIOM — Assistant Virtuel Premium v2.0
-//  Design cohérent avec la charte graphique AXIOM (dark + violet)
+//  Design cohérent avec la charte graphique AXIOM (dark + mauve #c470e2)
 // ============================================================
 
 // ─── 1. BASE DE CONNAISSANCES ENRICHIE ───────────────────────
@@ -125,7 +125,7 @@ const knowledgeBase = [
 
 function findResponse(question) {
   const q = question.toLowerCase()
-    .normalize("NFD").replace(/[\u0300-\u036f]/g, ""); // retire les accents pour comparaison
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
   for (let entry of knowledgeBase) {
     for (let keyword of entry.keywords) {
@@ -147,7 +147,6 @@ let chatHistory = [];
 let isTyping = false;
 
 function formatMessage(text) {
-  // Convertit les \n en <br> et les tirets en puce stylisée
   return text
     .replace(/\n\n/g, '</p><p>')
     .replace(/\n/g, '<br>')
@@ -161,7 +160,6 @@ function addMessage(content, isUser = false, withTyping = false) {
   if (!chatContainer) return;
 
   if (withTyping) {
-    // Affiche l'indicateur de frappe
     const typingDiv = document.createElement("div");
     typingDiv.className = "axiom-msg axiom-msg--bot axiom-typing-indicator";
     typingDiv.id = "axiom-typing";
@@ -177,7 +175,6 @@ function addMessage(content, isUser = false, withTyping = false) {
     return;
   }
 
-  // Supprime l'indicateur de frappe
   const typingEl = document.getElementById("axiom-typing");
   if (typingEl) typingEl.remove();
 
@@ -194,7 +191,6 @@ function addMessage(content, isUser = false, withTyping = false) {
       <div class="axiom-bubble">${formatted}</div>`;
   }
 
-  // Animation d'entrée
   msgDiv.style.opacity = "0";
   msgDiv.style.transform = "translateY(8px)";
   chatContainer.appendChild(msgDiv);
@@ -224,7 +220,6 @@ function sendMessage() {
   const sendBtn = document.getElementById("axiom-send-btn");
   if (sendBtn) sendBtn.disabled = true;
 
-  // Indicateur de frappe
   addMessage("", false, true);
 
   const delay = 600 + Math.random() * 600;
@@ -243,6 +238,7 @@ function resetChat() {
   if (container) container.innerHTML = "";
   addMessage("Bonjour ! Je suis l'assistant virtuel d'AXIOM, votre partenaire en transformation digitale.\n\nJe peux vous renseigner sur nos services, notre méthode de travail, nos tarifs ou encore nos coordonnées.\n\nComment puis-je vous aider aujourd'hui ?", false);
 }
+
 
 // ─── 4. SUGGESTIONS RAPIDES ──────────────────────────────────
 
@@ -275,28 +271,28 @@ function renderSuggestions() {
 
 function initChatbot() {
 
-  // ── Inject CSS ──
+  // ── Inject CSS avec nouvelle couleur #c470e2 ──
   const style = document.createElement("style");
   style.textContent = `
     /* ── Google Fonts ── */
     @import url('https://fonts.googleapis.com/css2?family=Jura:wght@400;600;700&family=Manrope:wght@400;500;600&display=swap');
 
-    /* ── Variables ── */
+    /* ── Variables avec nouvelle couleur ── */
     :root {
-      --axiom-accent:   #c040b8;
-      --axiom-accent2:  #ff7cf5;
+      --axiom-accent:   #c470e2;
+      --axiom-accent2:  #c470e2;
       --axiom-dark:     #0a0a0a;
       --axiom-surface:  #111111;
       --axiom-card:     #191919;
-      --axiom-border:   rgba(192, 64, 184, 0.18);
-      --axiom-border-h: rgba(255, 124, 245, 0.4);
+      --axiom-border:   rgba(196, 112, 226, 0.18);
+      --axiom-border-h: rgba(196, 112, 226, 0.4);
       --axiom-text:     #e8e8e8;
       --axiom-muted:    #888888;
       --axiom-radius:   14px;
-      --axiom-shadow:   0 24px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(192,64,184,0.12);
+      --axiom-shadow:   0 24px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(196,112,226,0.12);
     }
 
-    /* ── Wrapper bouton flottant (pour les anneaux) ── */
+    /* ── Wrapper bouton flottant ── */
     #axiom-btn-wrap {
       position: fixed;
       bottom: 28px;
@@ -306,12 +302,12 @@ function initChatbot() {
       z-index: 9998;
     }
 
-    /* Anneaux de halo violet — très subtils, toutes les 3s */
+    /* Anneaux de halo mauve */
     .axiom-ring {
       position: absolute;
       inset: 0;
       border-radius: 50%;
-      border: 1.5px solid rgba(192, 64, 184, 0.3);
+      border: 1.5px solid rgba(196, 112, 226, 0.3);
       opacity: 0;
       pointer-events: none;
     }
@@ -331,7 +327,7 @@ function initChatbot() {
       inset: 0;
       width: 58px;
       height: 58px;
-      background: linear-gradient(135deg, #f070e8 0%, #c040b8 100%);
+      background: #c470e2;
       border: none;
       border-radius: 50%;
       cursor: pointer;
@@ -339,12 +335,13 @@ function initChatbot() {
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      box-shadow: 0 4px 20px rgba(192,64,184,0.5);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 4px 20px rgba(196,112,226,0.5);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.2s ease;
     }
     #axiom-open-btn:hover {
       transform: scale(1.08);
-      box-shadow: 0 8px 32px rgba(192,64,184,0.7);
+      box-shadow: 0 8px 32px rgba(196,112,226,0.7);
+      background: #d180e8;
     }
 
     /* Icône messagerie dans le bouton */
@@ -402,7 +399,7 @@ function initChatbot() {
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,124,245,0.7), transparent);
+      background: linear-gradient(90deg, transparent, rgba(196,112,226,0.7), transparent);
       z-index: 10;
     }
 
@@ -421,7 +418,7 @@ function initChatbot() {
       border-radius: 50%;
       flex-shrink: 0;
       overflow: hidden;
-      box-shadow: 0 0 0 2px rgba(192,64,184,0.5), 0 0 16px rgba(192,64,184,0.3);
+      box-shadow: 0 0 0 2px rgba(196,112,226,0.5), 0 0 16px rgba(196,112,226,0.3);
       background: #1a0a24;
     }
     .axiom-header-avatar img {
@@ -459,12 +456,12 @@ function initChatbot() {
       border-radius: 7px;
       cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s;
+      transition: all 0.2s;
       color: var(--axiom-muted);
       font-size: 14px;
     }
     .axiom-icon-btn:hover {
-      background: rgba(192,64,184,0.12);
+      background: rgba(196,112,226,0.12);
       border-color: var(--axiom-border-h);
       color: var(--axiom-accent2);
     }
@@ -483,7 +480,7 @@ function initChatbot() {
     #axiom-chat-messages::-webkit-scrollbar { width: 4px; }
     #axiom-chat-messages::-webkit-scrollbar-track { background: transparent; }
     #axiom-chat-messages::-webkit-scrollbar-thumb {
-      background: rgba(192,64,184,0.25);
+      background: rgba(196,112,226,0.25);
       border-radius: 4px;
     }
 
@@ -506,7 +503,7 @@ function initChatbot() {
       flex-shrink: 0;
       overflow: hidden;
       background: #1a0a24;
-      box-shadow: 0 0 0 1.5px rgba(192,64,184,0.4);
+      box-shadow: 0 0 0 1.5px rgba(196,112,226,0.4);
     }
     .axiom-avatar img {
       width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block;
@@ -528,8 +525,8 @@ function initChatbot() {
       border-bottom-left-radius: 4px;
     }
     .axiom-msg--user .axiom-bubble {
-      background: linear-gradient(135deg, rgba(192,64,184,0.25), rgba(120,30,130,0.2));
-      border: 1px solid rgba(192,64,184,0.3);
+      background: linear-gradient(135deg, rgba(196,112,226,0.25), rgba(120,30,130,0.2));
+      border: 1px solid rgba(196,112,226,0.3);
       border-bottom-right-radius: 4px;
       text-align: right;
     }
@@ -580,7 +577,7 @@ function initChatbot() {
       white-space: nowrap;
     }
     .axiom-suggestion-btn:hover {
-      background: rgba(192,64,184,0.12);
+      background: rgba(196,112,226,0.12);
       border-color: var(--axiom-border-h);
     }
 
@@ -611,23 +608,24 @@ function initChatbot() {
     }
     #axiom-chat-input::placeholder { color: var(--axiom-muted); }
     #axiom-chat-input:focus {
-      border-color: rgba(192,64,184,0.45);
-      box-shadow: 0 0 0 3px rgba(192,64,184,0.08);
+      border-color: rgba(196,112,226,0.45);
+      box-shadow: 0 0 0 3px rgba(196,112,226,0.08);
     }
     #axiom-send-btn {
       width: 40px; height: 40px;
-      background: linear-gradient(135deg, #f070e8, #c040b8);
+      background: #c470e2;
       border: none;
       border-radius: 50%;
       cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
-      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
-      box-shadow: 0 2px 12px rgba(192,64,184,0.4);
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s, background 0.2s;
+      box-shadow: 0 2px 12px rgba(196,112,226,0.4);
     }
     #axiom-send-btn:hover:not(:disabled) {
       transform: scale(1.08);
-      box-shadow: 0 4px 20px rgba(192,64,184,0.6);
+      box-shadow: 0 4px 20px rgba(196,112,226,0.6);
+      background: #d180e8;
     }
     #axiom-send-btn:disabled { opacity: 0.45; cursor: not-allowed; }
     #axiom-send-btn svg { width: 17px; height: 17px; fill: white; }
@@ -647,7 +645,7 @@ function initChatbot() {
 
   // ── Inject HTML ──
   const html = `
-    <!-- Bouton flottant avec anneaux violet -->
+    <!-- Bouton flottant avec anneaux mauves -->
     <div id="axiom-btn-wrap">
       <div class="axiom-ring axiom-ring-1"></div>
       <div class="axiom-ring axiom-ring-2"></div>
@@ -744,20 +742,17 @@ function initChatbot() {
     }
   };
 
-  // Auto-resize textarea
   input.addEventListener("input", () => {
     input.style.height = "auto";
     input.style.height = Math.min(input.scrollHeight, 100) + "px";
   });
 
-  // Cacher suggestions après 1er envoi manuel
   input.addEventListener("input", () => {
     const sugWrap = document.getElementById("axiom-suggestions");
     if (sugWrap && input.value.trim()) sugWrap.style.display = "none";
     if (sugWrap && !input.value.trim()) sugWrap.style.display = "flex";
   });
 
-  // ── Init ──
   resetChat();
   renderSuggestions();
 }
