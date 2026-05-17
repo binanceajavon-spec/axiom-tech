@@ -35,16 +35,17 @@ function injectNavbar() {
                 top: 0; left: 0; right: 0;
                 height: var(--nav-h);
                 background: #000000;
-                border-bottom: 1px solid rgba(255,255,255,0.06);
+                border-bottom: 1px solid rgba(20,20,20,0.9); /* Ensure dark gray remains consistent */
                 z-index: 1000;
                 transition: background 0.4s ease, backdrop-filter 0.4s ease, border-bottom-color 0.4s ease;
             }
 
             .axiom-navbar.scrolled {
-                background: rgba(0, 0, 0, 0.7);
-                backdrop-filter: blur(12px);
+                background: #000000;
+                border-bottom: 1px solid rgba(20,20,20,0.9); /* Ensure dark gray remains consistent */
                 -webkit-backdrop-filter: blur(12px);
-                border-bottom-color: rgba(180,77,224,0.2);
+                backdrop-filter: blur(12px);
+                opacity: 0.7;
             }
 
             .navbar-inner {
