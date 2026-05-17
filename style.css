@@ -28,8 +28,8 @@
 
     /* Vidéo elle-même */
     .relative.min-h-screen.flex.items-center.justify-center.pt-20 video {
-        width: 80% !important;
-        height: 30% !important;
+        width: 100% !important;
+        height: 50% !important;
         object-fit: cover !important;
         object-position: center top !important;
         opacity: 0.85 !important;
@@ -240,4 +240,73 @@
 }
 .cta-button-icon .material-symbols-outlined {
     color: #000000 !important;   /* Icône noire */
+}
+
+
+
+
+/* =============================================
+   FIX TREMBLEMENT MOBILE - S8+ ET PETITS ÉCRANS
+============================================= */
+
+/* Désactiver TOUTES les transformations sur mobile */
+@media (max-width: 768px) {
+    /* Supprimer l'effet de translation au hover sur mobile */
+    .service-card:hover {
+        transform: translateY(-3px) !important;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+    }
+    
+    /* Éviter les transformations intempestives */
+    .service-card {
+        transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+        will-change: auto !important;
+    }
+    
+    /* Désactiver le spotlight cursor sur mobile */
+    .service-card .card-spotlight {
+        display: none !important;
+    }
+    
+    /* Stabiliser les icônes - pas de scale sur mobile */
+    .service-card:hover .service-icon-box .mat-icon {
+        transform: none !important;
+    }
+    
+    /* Stabiliser la barre latérale */
+    .service-card:hover .card-accent-bar {
+        top: 20% !important;
+        bottom: 20% !important;
+    }
+    
+    /* Supprimer les décalages de bordure */
+    .service-card::before {
+        transition: none !important;
+    }
+    
+    /* Fixer les cartes pour éviter le tremblement */
+    .service-card {
+        backface-visibility: hidden !important;
+        -webkit-backface-visibility: hidden !important;
+        transform: translateZ(0) !important;
+        -webkit-transform: translateZ(0) !important;
+    }
+}
+
+/* Pour S8+ spécifiquement (360px - 400px) */
+@media (max-width: 400px) {
+    .service-card {
+        margin: 0 2px 12px 2px !important;
+        padding: 1rem !important;
+    }
+    
+    /* Désactiver complètement les animations sur très petits écrans */
+    .service-card:hover {
+        transform: none !important;
+        box-shadow: 0 0 0 1px rgba(209,138,238,0.12) !important;
+    }
+    
+    .service-card .service-icon-box .mat-icon {
+        transition: none !important;
+    }
 }
