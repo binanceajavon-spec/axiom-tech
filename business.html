@@ -415,7 +415,7 @@
 
         <div class="section-divider"></div>
 
-        <!-- CARROUSSEL SITES WEB -->
+              <!-- CARROUSSEL SITES WEB -->
         <section class="py-20">
             <div class="max-w-[1280px] mx-auto px-8">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-4">
@@ -437,6 +437,32 @@
         </section>
 
         <div class="section-divider"></div>
+
+        <!-- DEUXIÈME CARROUSSEL : APPLICATIONS MOBILES -->
+        <section class="py-20">
+            <div class="max-w-[1280px] mx-auto px-8">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-4">
+                    <div>
+                        <div class="mb-3"><span class="label-pill">Applications mobiles</span></div>
+                        <h2 class="font-jura-bold text-3xl md:text-4xl text-white">Apps <span style="color:var(--primary)">native & cross-platform</span></h2>
+                        <p class="text-zinc-400 mt-3 max-w-xl">Des expériences mobiles intuitives, performantes et sur-mesure.</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <button id="prevMobileBtn" class="carousel-btn"><span class="material-symbols-outlined">chevron_left</span></button>
+                        <button id="nextMobileBtn" class="carousel-btn"><span class="material-symbols-outlined">chevron_right</span></button>
+                    </div>
+                </div>
+
+                <div class="carousel-container">
+                    <div id="mobileCarouselTrack" class="carousel-track"></div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+
+        
 
         <!-- SECTION LOGICIELS -->
         <section class="py-20">
@@ -549,6 +575,156 @@
                 link: "https://theone.ci/fr/accueil/"
             }
         ];
+
+
+
+
+                // ----- APPLICATIONS MOBILES (deuxième carrousel) -----
+        const mobileApps = [
+            { 
+                brandName: "moriyagroupe",
+                projectTitle: "Paiement Mobile",
+                creationDate: "2024",
+                description: "Application de paiement mobile sécurisée avec transfert d'argent, factures et cashback intégré.",
+                image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop",
+                link: "https://moriyagroupe.com/"
+            },
+            { 
+                brandName: "MEDI+",
+                projectTitle: "Santé Connectée",
+                creationDate: "2024",
+                description: "Prise de rendez-vous médicaux, téléconsultation et suivi de dossier patient en temps réel.",
+                image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop",
+                link: "#"
+            },
+            { 
+                brandName: "DRIVE EAT",
+                projectTitle: "Food Delivery",
+                creationDate: "2023",
+                description: "Commandez vos plats préférés et suivez votre livreur en direct géolocalisation.",
+                image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&h=400&fit=crop",
+                link: "#"
+            },
+            { 
+                brandName: "SPORTIFY",
+                projectTitle: "Fitness & Coaching",
+                creationDate: "2024",
+                description: "Programmes d'entraînement personnalisés, suivi des performances et coaching vidéo.",
+                image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=400&fit=crop",
+                link: "#"
+            },
+            { 
+                brandName: "EDU KIDS",
+                projectTitle: "Éducation Ludique",
+                creationDate: "2023",
+                description: "Apprentissage interactif pour enfants avec jeux éducatifs et suivi parental.",
+                image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop",
+                link: "#"
+            },
+            { 
+                brandName: "RENT EASY",
+                projectTitle: "Location Immobilière",
+                creationDate: "2024",
+                description: "Trouvez, visitez et réservez votre logement en toute simplicité depuis votre mobile.",
+                image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop",
+                link: "#"
+            }
+        ];
+
+        // Construction du deuxième carrousel (mobile)
+        const mobileTrack = document.getElementById('mobileCarouselTrack');
+        let mobileCurrentIndex = 0;
+        let mobileSlidesPerView = 3;
+
+        function updateMobileSlidesPerView() {
+            if (window.innerWidth <= 640) mobileSlidesPerView = 1;
+            else if (window.innerWidth <= 1024) mobileSlidesPerView = 2;
+            else mobileSlidesPerView = 3;
+        }
+
+        function renderMobileCarousel() {
+            if (!mobileTrack) return;
+            mobileTrack.innerHTML = '';
+            mobileApps.forEach(app => {
+                const slide = document.createElement('div');
+                slide.className = 'carousel-slide';
+                slide.innerHTML = `
+                    <div>
+                        <div class="overflow-hidden">
+                            <img class="carousel-img" src="${app.image}" alt="${app.brandName}" loading="lazy">
+                        </div>
+                        <div class="carousel-content">
+                            <div class="brand-header">
+                                <div class="brand-info">
+                                    <div class="brand-name">${app.brandName}</div>
+                                    <div class="project-title">${app.projectTitle}</div>
+                                </div>
+                            </div>
+                            <div class="creation-date">
+                                <span class="material-symbols-outlined" style="font-size:12px;">calendar_today</span>
+                                ${app.creationDate}
+                            </div>
+                            <div class="project-desc">${app.description}</div>
+                            <a href="${app.link}" target="_blank" rel="noopener noreferrer" class="site-link">
+                                Découvrir l'app <span class="material-symbols-outlined" style="font-size:16px;">arrow_outward</span>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                mobileTrack.appendChild(slide);
+            });
+            updateMobileTransform();
+        }
+
+        function updateMobileTransform() {
+            if (!mobileTrack || mobileTrack.children.length === 0) return;
+            const slideWidth = mobileTrack.children[0]?.offsetWidth || 0;
+            const gap = 24;
+            const step = (slideWidth + gap);
+            const transformValue = - (mobileCurrentIndex * step);
+            mobileTrack.style.transform = `translateX(${transformValue}px)`;
+        }
+
+        function nextMobileSlide() {
+            const maxIndex = Math.max(0, mobileApps.length - mobileSlidesPerView);
+            if (mobileCurrentIndex < maxIndex) mobileCurrentIndex++;
+            else mobileCurrentIndex = 0;
+            updateMobileTransform();
+        }
+
+        function prevMobileSlide() {
+            const maxIndex = Math.max(0, mobileApps.length - mobileSlidesPerView);
+            if (mobileCurrentIndex > 0) mobileCurrentIndex--;
+            else mobileCurrentIndex = maxIndex;
+            updateMobileTransform();
+        }
+
+        function recalcMobileCarousel() {
+            updateMobileSlidesPerView();
+            const maxAllowed = Math.max(0, mobileApps.length - mobileSlidesPerView);
+            if (mobileCurrentIndex > maxAllowed) mobileCurrentIndex = maxAllowed;
+            if (mobileCurrentIndex < 0) mobileCurrentIndex = 0;
+            updateMobileTransform();
+        }
+
+        // Initialisation du deuxième carrousel
+        if (mobileTrack) {
+            window.addEventListener('resize', () => recalcMobileCarousel());
+            const prevMobileBtn = document.getElementById('prevMobileBtn');
+            const nextMobileBtn = document.getElementById('nextMobileBtn');
+            if (prevMobileBtn) prevMobileBtn.addEventListener('click', prevMobileSlide);
+            if (nextMobileBtn) nextMobileBtn.addEventListener('click', nextMobileSlide);
+            renderMobileCarousel();
+            setTimeout(() => {
+                updateMobileSlidesPerView();
+                recalcMobileCarousel();
+            }, 100);
+        }
+
+
+
+
+
 
         // ----- LOGICIELS -----
         const softwares = [
