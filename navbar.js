@@ -43,9 +43,9 @@ function injectNavbar() {
             .axiom-navbar.scrolled {
                 background: #000000;
                 border-bottom: 1px solid rgba(20,20,20,0.9); /* Ensure dark gray remains consistent */
-                -webkit-backdrop-filter: blur(12px);
-                backdrop-filter: blur(12px);
-                opacity: 0.7;
+                -webkit-backdrop-filter: blur(65px);
+                backdrop-filter: blur(65px);
+                opacity: 1.2;
             }
 
             .navbar-inner {
